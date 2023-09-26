@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="n1">Ingresa un numero:</label><input type="number" placeholder="Número" id="n1"><br>
+    <label for="n2">Ingresa un numero:</label><input type="number" placeholder="Número" id="n2"><br>
+    <button onclick="let n1,n2,res; 
+            n1=document.getElementById('n1').value; 
+            n2=document.getElementById('n2').value; 
+            res=document.getElementById('res').value;
+            res=n1+n2; 
+            document.getElementById('res').value=res;
+            ">Sumar</button><br>
+    <label for="res">Resulatado: </label><input type="number" placeholder="Número" id="res" readonly><br>
+
+</body>
+</html>

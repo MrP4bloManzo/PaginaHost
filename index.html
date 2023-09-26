@@ -2,50 +2,51 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="javascrip.js">
-  <title>Fundamentos de Tecnologías del Internet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-  <!-- Barra superior -->
-  <div class="navbar">
-   <nav>
-    <span></span>
-    <!-- <a href="#" class="login-button">Inicio de Sesión</a> -->
-    <h1>Protocolo HTTP</h1>
-  </nav>
-</div>
-<div class="listas">
-  <ol>
-    <li><a href="estructura.html"  >Estructura y Funcionamiento</a></li>
-    <li><a href="metodos.html">Métodos de Petición</a></li>
-    <li><a href="codigos.html">Códigos de Respuesta</a></li>
-  </ol>
-</div>    
-<img src="PNG 1.png" height="375px" width="550px" style="float: right;">
-<p>
-  Es la base de cualquier intercambio de datos en la Web y un protocolo de estructura cliente-servidor. Esto
-  significa que una petición de datos es iniciada por el elemento que recibirá los datos (el cliente),
-  normalmente un navegador web. Así, una página web completa resulta de la unión de distintos subdocumentos
-  recibidos, como, por ejemplo: un documento que especifique el estilo de maquetación de la página web (CSS), el
-  texto, las imágenes, vídeos, scripts, etc.
-</p>
+    <header>
+        <h1>Mi Portafolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<style>
- 
-  ol {
-    text-align: right;
-    margin-right: 20px;
-  }
-  li {
-    text-align: left; 
-  }
-  
-  
-</style>
+    <section id="sobre-mi">
+        <h2>Sobre Mí</h2>
+        <p>Conocimieto basico de HTTL,CSS y JavaScrip <br>
+          Cursos en la plataforma de Google Activate
+        </p>
+    </section>
 
+    <section id="proyectos">
+        <h2>Proyectos</h2>
+        <div class="proyecto">
+            <h3>Proyecto 1</h3>
+            <p>Descripción del proyecto 1.</p>
+        </div>
+        <div class="proyecto">
+            <h3>Proyecto 2</h3>
+            <p>Descripción del proyecto 2.</p>
+        </div>
+        <!-- Agrega más proyectos según sea necesario -->
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Puedes contactarme en <a href="mailto:tu@email.com">pmanzo0@ucol.mx</a>.</p>
+    </section>
+
+    <footer>
+        <p>Derechos de autor © 2023 Pablo A. Manzo Pérez</p>
+    </footer>
 </body>
 
 </html>
