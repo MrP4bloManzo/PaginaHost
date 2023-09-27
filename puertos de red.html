@@ -1,0 +1,234 @@
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Puertos de red</title>
+    </head>
+
+    <body>
+        <div class="navbar">
+            <nav>
+                <h1>Puertos de Red</h1>
+            </nav>
+        </div>
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <title>Protocolos de Red</title>
+        </head>
+        <br><br>
+        <label class="label" for="protocolos">Selecciona un protocolo:</label>
+        <select id="protocolos" onchange="redirigir()">
+            <option value="">Selecciona un protocolo</option>
+            <option value="#http">HTTP</option>
+            <option value="#https">HTTPS</option>
+            <option value="#smtp">SMTP</option>
+            <option value="#pop3">POP3</option>
+            <option value="#imap">IMAP</option>
+            <option value="#mime">MIME</option>
+            <option value="#ftp">FTP</option>
+            <option value="#ftps">FTPS</option>
+            <option value="#sftp">SFTP</option>
+            <option value="#bittorrent">BitTorrent</option>
+            <option value="#edonkey">eDonkey</option>
+            <option value="#fasttrack">FastTrack</option>
+            <option value="#irc">IRC</option>
+            <option value="#xmpp">XMPP</option>
+            <option value="#mtproto">MTProto</option>
+        </select>
+        <body>
+            <h1>Protocolos de Red</h1>
+            <p>
+                Los puertos de red TCP (Protocolo de Control de Transmisión) y UDP (Protocolo de Datagramas de Usuario) son
+                números de identificación que se utilizan en el nivel de transporte de un sistema de comunicación en red
+                para dirigir el tráfico de datos entrante y saliente hacia aplicaciones y servicios específicos en una
+                computadora o dispositivo en una red.
+
+                Aquí hay una breve descripción de cada uno: <br>
+
+                <br> <b>TCP (Protocolo de Control de Transmisión):</b> <br> <br>
+
+                TCP es un protocolo de comunicación orientado a la conexión. Esto significa que antes de que se pueda enviar
+                o recibir datos, se establece una conexión entre el emisor y el receptor.
+                Los puertos TCP se utilizan para aplicaciones que requieren una comunicación fiable y ordenada de datos,
+                como la transferencia de archivos (FTP), navegación web (HTTP), correo electrónico (SMTP, POP3, IMAP),
+                acceso remoto (SSH), y muchas otras.
+                Los números de puerto TCP van desde 0 hasta 65535. <br> <br>
+                <br><b>UDP (Protocolo de Datagramas de Usuario): </b> <br>
+
+                UDP es un protocolo de comunicación sin conexión, lo que significa que no se establece una conexión previa
+                antes de enviar datos. Esto lo hace más rápido pero menos confiable en comparación con TCP.
+                Los puertos UDP se utilizan en aplicaciones donde la velocidad y la eficiencia son más importantes que la
+                integridad de los datos, como la transmisión de video en tiempo real (por ejemplo, streaming), servicios de
+                juegos en línea, servicios de voz sobre IP (VoIP) y DNS (Sistema de Nombres de Dominio).
+                Al igual que con TCP, los números de puerto UDP van desde 0 hasta 65535. <br>
+            </p>
+            <br>
+            <div id="http">
+                <h2><b>HTTP <br> (Hypertext Transfer Protocol)</b></h2>
+                <p>
+                    HTTP es el protocolo utilizado para la transferencia de datos en la World Wide Web.
+                    Funciona mediante solicitudes y respuestas, permitiendo que los clientes web (navegadores) soliciten
+                    recursos a servidores web (por ejemplo, páginas web) y reciban respuestas en forma de texto o recursos
+                    multimedia. <br>
+                    <b> Puerto: 80 </b> <br>
+                </p>
+            </div>
+
+            <div id="https">
+                <h2><b>HTTPS <br> (Hypertext Transfer Protocol Secure)</b></h2>
+                <p>
+                    HTTPS es una versión segura de HTTP que utiliza cifrado SSL/TLS para proteger la privacidad
+                    de la comunicación entre el cliente y el servidor web. Es esencial para garantizar la seguridad en
+                    transacciones en línea y para proteger la confidencialidad de los datos. <br>
+                    <b>Puerto: 443 </b>
+                </p>
+            </div>
+
+            <div id="smtp">
+                <h2><b>SMTP <br> (Simple Mail Transfer Protocol)</b></h2>
+                <p>
+                    SMTP es el protocolo utilizado para enviar correo electrónico. Permite que los clientes de
+                    correo electrónico envíen mensajes a servidores de correo saliente para su entrega a destinatarios. <br>
+                    <b> Puerto: 25 </b>
+                </p>
+            </div>
+            <div id="pop3">
+                <h2><b>POP3 <br> (Post Office Protocol 3)</b></h2>
+                <p>
+                    POP3 es un protocolo utilizado por clientes de correo electrónico para recuperar mensajes
+                    de un servidor de correo. Los mensajes se descargan en el cliente y se eliminan del servidor (por
+                    defecto), lo que significa que los correos electrónicos se almacenan localmente. <br>
+                    <b>Puerto: 110 </b>
+                </p>
+            </div>
+            <div id="imap">
+                <h2><b>IMAP <br> (Internet Message Access Protocol)</b></h2>
+                <p>
+                    IMAP es otro protocolo de correo electrónico que permite a los clientes acceder y
+                    administrar correos electrónicos almacenados en un servidor de correo. A diferencia de POP3, los
+                    mensajes se mantienen en el servidor y pueden organizarse en carpetas, lo que permite el acceso desde
+                    múltiples dispositivos. <br>
+                    <b>Puerto: 143</b>
+                </p>
+            </div>
+            <div id="mime">
+                <h2><b>MIME <br> (Multipurpose Internet Mail Extensions)</b></h2>
+                <p>
+                    MIME es una especificación que extiende SMTP para permitir el envío de contenido
+                    multimedia, como imágenes y archivos adjuntos, a través de correo electrónico. Define cómo se deben
+                    codificar y decodificar los datos adjuntos. <br>
+                    <b>Puerto: No es un protocolo con puerto específico.</b>
+                </p>
+            </div>
+            <div id="ftp">
+                <h2><b>FTP <br> (File Transfer Protocol)</b></h2>
+                <p>
+                    FTP es un protocolo utilizado para la transferencia de archivos entre un cliente y un
+                    servidor. Permite la carga y descarga de archivos de un servidor remoto. <br>
+                    <b>Puerto: 21</b>
+                </p>
+                <div id="ftps">
+                    <h2>FTPS <br> (FTP Secure)</h2>
+                    <p>
+                        FTPS es una extensión segura de FTP que utiliza SSL/TLS para cifrar la comunicación
+                        entre el cliente y el servidor FTP. Proporciona seguridad adicional a las transferencias de
+                        archivos. <br>
+                        <b>Puerto: 990 (Control), 989 (Datos)</b>
+                    </p>
+                </div>
+                <div id="sftp">
+                    <h2><b>SFTP <br> (SSH File Transfer Protocol)</b></h2>
+                    <p>
+                        SFTP es un protocolo de transferencia de archivos seguro basado en SSH. Permite la
+                        transferencia segura de archivos y la administración de archivos en servidores remotos. <br>
+                        <b>Puerto: 22</b>
+                    </p>
+                </div>
+            </div>
+            <div id="bittorrent">
+                <h2><b>BitTorrent</b></h2>
+                <p>
+                    BitTorrent es un protocolo de transferencia de archivos punto a punto (P2P) utilizado para
+                    compartir archivos grandes de manera eficiente. Los usuarios comparten fragmentos de archivos entre sí,
+                    lo que permite descargas más rápidas y distribución de carga. <br>
+                    <b>Puerto: Varios (depende de la configuración)</b>
+                </p>
+            </div>
+            <div id="edonkey">
+                <h2>eDonkey <br> (eDonkey2000)</h2>
+                <p>
+                    eDonkey es un protocolo de red P2P utilizado para compartir archivos, similar a BitTorrent.
+                    Fue popularizado por programas como eMule y permite a los usuarios compartir archivos entre sí. <br>
+                    <b>Puerto: 4662 (TCP), 4672 (UDP)</b>
+                </p>
+            </div>
+            <div id="fasttrack">
+                <h2><b>FastTrack</b></h2>
+                <p>
+                    FastTrack es un protocolo de red P2P utilizado por programas como Kazaa y Grokster para
+                    compartir archivos. Fue popular en la década de 2000. <br>
+                    <b>Puerto: No tiene un puerto estándar (depende de la aplicación)</b>
+                </p>
+            </div>
+            <div id="irc">
+                <h2><B>IRC <br> (Internet Relay Chat)</B></h2>
+                <p>
+                IRC es un protocolo de chat en tiempo real que permite a los usuarios conectarse a
+                    servidores y participar en salas de chat. Se utiliza para la comunicación en línea en tiempo real. <br>
+                    <b>Puerto: 6660-6669 (puertos no seguros)</b>
+                </p>
+            </div>
+            <div id="xmpp">
+                <h2><b>XMPP <br> (Extensible Messaging and Presence Protocol)</b></h2>
+                <p>
+                    XMPP es un protocolo de mensajería instantánea y presencia que se utiliza en servicios de
+                    chat en tiempo real y comunicación en línea. Es extensible y ampliamente utilizado en aplicaciones de
+                    mensajería. <br>
+                    <b>Puerto: 5222 (Cliente), 5269 (Servidor)</b>
+                </p>
+            </div>
+            <div id="mtproto">
+                <h2><b>MTProto</b></h2>
+                <p>
+                    MTProto es el protocolo de cifrado utilizado por la aplicación de mensajería Telegram.
+                    Proporciona seguridad en las comunicaciones y es uno de los elementos clave para garantizar la
+                    privacidad en la aplicación. <br>
+                    <b>Puerto: 443</b>
+                </p>
+            </div>
+            <img src="https://cdn.goconqr.com/uploads/media/image/38753998/desktop_d4113cac-31d5-42d9-a1f2-6867d631c200.png" alt="">
+            <button id="btnScrollToTop"> ↑ </button>
+            <script>
+                function redirigir() {
+                    var seleccion = document.getElementById("protocolos").value;
+                    if (seleccion !== "") {
+                        window.location.href = seleccion;
+                    }
+                }
+            </script>
+            <script>
+                var btnScrollToTop = document.getElementById('btnScrollToTop');
+                window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    btnScrollToTop.style.display = 'block';
+                } else {
+                    btnScrollToTop.style.display = 'none';
+                }
+                });
+                btnScrollToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                });
+            </script>
+        </body>
+        </html>
+    </body>
+
+    </html>

@@ -36,3 +36,19 @@ p {
     padding: 10px 0;
     text-align: center;
 }
+#btnScrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 0; 
+    cursor: pointer;
+  }
+  html {
+    scroll-behavior: smooth;
+}
