@@ -52,3 +52,18 @@ p {
   html {
     scroll-behavior: smooth;
 }
+ /* Estilo para el botón de regreso */
+ .boton-regresar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000000; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Esquinas redondeadas */
+}
+
+/* Cambia el color del botón cuando el mouse está encima */
+.boton-regresar:hover {
+    background-color: #000000; /* Color de fondo en hover */
+}

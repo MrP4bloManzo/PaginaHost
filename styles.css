@@ -56,3 +56,19 @@ footer {
     background-color: #333;
     color: white;
 }
+
+ /* Estilo para el botón de regreso */
+ .boton-regresar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Esquinas redondeadas */
+}
+
+/* Cambia el color del botón cuando el mouse está encima */
+.boton-regresar:hover {
+    background-color: #0056b3; /* Color de fondo en hover */}
+    
