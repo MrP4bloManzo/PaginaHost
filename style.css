@@ -67,3 +67,12 @@ p {
 .boton-regresar:hover {
     background-color: #000000; /* Color de fondo en hover */
 }
+a {
+    color: #000; /* Cambia el color del texto del enlace a negro */
+    text-decoration: none; /* Quita la subrayado predeterminado */
+}
+
+/* Estilo para los enlaces cuando se encuentren en estado "hover" (al pasar el mouse) */
+a:hover {
+    text-decoration: underline; /* Agrega subrayado al pasar el mouse */
+}
