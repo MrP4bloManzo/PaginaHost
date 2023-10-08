@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+nav ul {
+    list-style-type: none; /* Quitar los puntos de las listas */
+    padding: 0;
+    font-size: 20px;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 22px;
+    line-height: 1.5;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+/* Estilo para el botón de regreso */
+.boton-regresar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Cambia el color del botón cuando el mouse está encima */
+.boton-regresar:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Estilo para los enlaces cuando se encuentren en estado "hover" (al pasar el mouse) */
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    font-size: 30px;
+    margin: 0;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#btnScrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.boton-regresar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000000; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Esquinas redondeadas */
+}
+.imagen {
+    width: 600; /* Establece el tamaño deseado para todas las imágenes */
+    height: 400px; /* Establece la altura deseada para todas las imágenes */
+}
+table {
+    border-collapse: collapse;
+    width: calc(100% + 200px);
+    margin-left: -100px;
+    margin-right: -100px;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}

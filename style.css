@@ -76,3 +76,18 @@ a {
 a:hover {
     text-decoration: underline; /* Agrega subrayado al pasar el mouse */
 }
+table {
+    border-collapse: collapse;
+    width: calc(100% - 200px); /* 100px en cada lado */
+    margin: 0 100px; /* 100px en cada lado */
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
