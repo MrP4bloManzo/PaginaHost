@@ -1,551 +1,320 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PARQ — Sistema de Estacionamiento</title>
-  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Flores Amarillas</title>
   <style>
-    :root {
-      --bg: #080c10;
-      --surface: #0d1318;
-      --border: #1a2530;
-      --accent-green: #00ff88;
-      --accent-orange: #ff8c00;
-      --accent-red: #ff2d55;
-      --text: #e8f0f7;
-      --muted: #4a6070;
-      --glow-green: 0 0 40px rgba(0,255,136,0.3);
-      --glow-orange: 0 0 40px rgba(255,140,0,0.3);
-      --glow-red: 0 0 40px rgba(255,45,85,0.3);
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Space Grotesk', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
+body {
+  background: radial-gradient(ellipse at 60% 40%, #2d6a2d 0%, #1a4a1a 40%, #0d2e0d 100%);
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Playfair Display', serif;
+}
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
+/* Textura de hierba en el suelo */
+.ground {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 18vh;
+  background: linear-gradient(to top, #1a3d0a 0%, #2d6a1a 60%, transparent 100%);
+  z-index: 0;
+}
 
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.05) 2px,
-        rgba(0,0,0,0.05) 4px
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
+/* Tallos y flores */
+.garden {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 100vh;
+  z-index: 1;
+}
 
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
+.flower-group {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 48px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
+/* Tallo */
+.stem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      letter-spacing: 8px;
-      color: var(--text);
-      line-height: 1;
-    }
-    .logo span {
-      color: var(--accent-green);
-    }
+.stem-line {
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to top, #2d6e0a, #4a9c1a);
+  transform-origin: bottom center;
+}
 
-    .header-right {
-      text-align: right;
-    }
+/* Hoja */
+.leaf {
+  position: absolute;
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(135deg, #3a8c10, #5ab820);
+  border-radius: 50% 0 50% 0;
+  transform-origin: left center;
+}
+.leaf.right {
+  right: 0;
+  transform-origin: right center;
+  border-radius: 0 50% 0 50%;
+}
 
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 2px;
-    }
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    .live-dot.red { background: var(--accent-red); animation: none; }
+/* Flor */
+.flower {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: bottom center;
+}
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
+/* Pétalos */
+.petals {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    #status-bar {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
+.petal {
+  position: absolute;
+  border-radius: 50% 50% 20% 50%;
+  background: radial-gradient(ellipse at 30% 30%, #ffe566, #f0b800);
+  transform-origin: center bottom;
+  box-shadow: inset -2px -2px 6px rgba(0,0,0,0.15);
+}
 
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
+/* Centro */
+.center {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #6b3a00, #3d1f00);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,180,0,0.2);
+}
 
-    .counter-card {
-      grid-column: 1 / -1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.5s ease;
-    }
+/* Abejas decorativas */
+.bee {
+  position: fixed;
+  font-size: 1.4rem;
+  animation: fly 14s ease-in-out infinite;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
 
-    .counter-card::before {
-      content: 'OCUPADOS';
-      position: absolute;
-      top: 20px;
-      right: 32px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 4px;
-      color: var(--muted);
-    }
+/* Luz de sol */
+.sun-rays {
+  position: fixed;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,230,100,0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-sun 4s ease-in-out infinite;
+}
 
-    .counter-card.green { box-shadow: var(--glow-green); border-color: rgba(0,255,136,0.2); }
-    .counter-card.orange { box-shadow: var(--glow-orange); border-color: rgba(255,140,0,0.2); }
-    .counter-card.red { box-shadow: var(--glow-red); border-color: rgba(255,45,85,0.2); }
+/* Título */
+.title {
+  position: fixed;
+  top: 32px; left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,240,180,0.85);
+  font-size: 2rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 30px rgba(255,200,0,0.3);
+  z-index: 20;
+  white-space: nowrap;
+}
 
-    .big-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(7rem, 18vw, 12rem);
-      line-height: 0.85;
-      transition: color 0.5s ease, text-shadow 0.5s ease;
-      color: var(--accent-green);
-    }
-    .big-number.orange { color: var(--accent-orange); text-shadow: 0 0 60px rgba(255,140,0,0.4); }
-    .big-number.red { color: var(--accent-red); text-shadow: 0 0 60px rgba(255,45,85,0.4); }
-    .big-number.green { color: var(--accent-green); text-shadow: 0 0 60px rgba(0,255,136,0.4); }
+/* Partículas de luz */
+.sparkle {
+  position: fixed;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,240,100,0.8);
+  pointer-events: none;
+  z-index: 5;
+  animation: sparkle-float linear infinite;
+}
 
-    .counter-meta {
-      text-align: right;
-    }
-    .counter-fraction {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 4px;
-      color: var(--muted);
-    }
-    .counter-label {
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 8px;
-    }
+/* ---- Animaciones ---- */
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+@keyframes sway-slow {
+  0%, 100% { transform: rotate(-2deg); }
+  50%       { transform: rotate(2deg); }
+}
+@keyframes bloom {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+  70%  { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes fly {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  20%  { transform: translate(80px,-60px) rotate(10deg); }
+  45%  { transform: translate(-40px,-120px) rotate(-8deg); }
+  70%  { transform: translate(120px,-50px) rotate(6deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+@keyframes pulse-sun {
+  0%,100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.1); }
+}
+@keyframes sparkle-float {
+  0%   { opacity: 0; transform: translateY(0) scale(0); }
+  20%  { opacity: 1; transform: translateY(-20px) scale(1); }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+}
+@keyframes gentle-bob {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+```
 
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent-green);
-      transition: background 0.5s ease;
-    }
-    .stat-card.orange::after { background: var(--accent-orange); }
-    .stat-card.red::after { background: var(--accent-red); }
-
-    .stat-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      line-height: 1;
-      color: var(--accent-green);
-      transition: color 0.5s ease;
-    }
-    .stat-value.orange { color: var(--accent-orange); }
-    .stat-value.red { color: var(--accent-red); }
-    .stat-sub {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .progress-card {
-      grid-column: 1 / -1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px 32px;
-    }
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .progress-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .progress-pct {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text);
-    }
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      background: var(--border);
-      border-radius: 0;
-      overflow: visible;
-      position: relative;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--accent-green);
-      transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1), background 0.5s ease;
-      position: relative;
-    }
-    .progress-fill.orange { background: var(--accent-orange); }
-    .progress-fill.red { background: var(--accent-red); }
-    .progress-fill::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: inherit;
-      box-shadow: 0 0 20px currentColor;
-    }
-
-    .slots-card {
-      grid-column: 1 / -1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px 32px;
-    }
-    .slots-header {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 10px;
-    }
-    .slot {
-      aspect-ratio: 3/5;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 8px;
-      position: relative;
-      transition: all 0.4s ease;
-      cursor: default;
-    }
-    .slot.occupied {
-      border-color: rgba(255,45,85,0.4);
-      background: rgba(255,45,85,0.06);
-    }
-    .slot.free {
-      border-color: rgba(0,255,136,0.25);
-      background: rgba(0,255,136,0.04);
-    }
-    .slot-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.55rem;
-      color: var(--muted);
-    }
-    .car-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -60%);
-      font-size: 1.4rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .slot.occupied .car-icon { opacity: 1; }
-
-    .footer {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .update-time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
-    .system-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--border);
-      letter-spacing: 2px;
-    }
-
-    @keyframes dataflash {
-      0% { opacity: 1; }
-      30% { opacity: 0.3; }
-      60% { opacity: 1; }
-    }
-    .flash { animation: dataflash 0.3s ease; }
-
-    @media (max-width: 600px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .counter-card { flex-direction: column; gap: 20px; text-align: center; }
-      .counter-meta { text-align: center; }
-      .slots-grid { grid-template-columns: repeat(5, 1fr); }
-      header { flex-direction: column; gap: 16px; text-align: center; }
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <div class="logo">PAR<span>Q</span></div>
-        <div style="font-size:0.7rem;letter-spacing:3px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono',monospace;">SISTEMA INTELIGENTE DE ESTACIONAMIENTO</div>
-      </div>
-      <div class="header-right">
-        <div class="live-badge">
-          <div class="live-dot red" id="live-dot"></div>
-          <span id="live-text">CONECTANDO</span>
-        </div>
-        <div id="status-bar">broker.hivemq.com · xai/estacionamiento/ocupados</div>
-      </div>
-    </header>
 
-    <div class="main-grid">
-      <!-- BIG COUNTER -->
-      <div class="counter-card" id="counter-card">
-        <div class="big-number green" id="big-num">—</div>
-        <div class="counter-meta">
-          <div class="counter-fraction" id="fraction">— / 20</div>
-          <div class="counter-label">Espacios ocupados</div>
-        </div>
-      </div>
+<div class="sun-rays"></div>
+<div class="ground"></div>
+<p class="title">🌼 Flores Amarillas 🌼</p>
 
-      <!-- DISPONIBLES -->
-      <div class="stat-card" id="avail-card">
-        <div class="stat-label">Disponibles</div>
-        <div class="stat-value green" id="avail-num">—</div>
-        <div class="stat-sub">espacios libres ahora mismo</div>
-      </div>
+<div class="garden" id="garden"></div>
 
-      <!-- OCUPACIÓN % -->
-      <div class="stat-card" id="pct-card">
-        <div class="stat-label">Ocupación</div>
-        <div class="stat-value green" id="pct-num">—%</div>
-        <div class="stat-sub">del total de capacidad</div>
-      </div>
+<!-- Abejas -->
 
-      <!-- PROGRESS BAR -->
-      <div class="progress-card">
-        <div class="progress-header">
-          <div class="progress-title">Nivel de ocupación en tiempo real</div>
-          <div class="progress-pct" id="progress-label">0%</div>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill green" id="progress-fill" style="width:0%"></div>
-        </div>
-      </div>
+<div class="bee" style="top:38%;left:20%;animation-delay:-3s;">🐝</div>
+<div class="bee" style="top:55%;left:70%;animation-delay:-8s;font-size:1.1rem;">🐝</div>
 
-      <!-- SLOTS VISUAL -->
-      <div class="slots-card">
-        <div class="slots-header">Vista de cajones — Planta 1 (20 espacios)</div>
-        <div class="slots-grid" id="slots-grid"></div>
-      </div>
-    </div>
+<script>
+  // ─── Configuración de flores ───────────────────────────
+  const flowerDefs = [
+    // [x%, stemH, petalCount, petalW, petalH, centerR, delay, swayDur, scale]
+    [4,  180, 10, 28, 16, 16, 0.2,  3.8, 1.0],
+    [10, 220, 12, 32, 18, 18, 0.6,  4.2, 1.15],
+    [16, 160, 8,  24, 14, 14, 1.0,  3.5, 0.9],
+    [22, 250, 14, 36, 20, 20, 0.3,  4.8, 1.3],
+    [28, 190, 10, 28, 16, 16, 0.8,  3.6, 1.0],
+    [34, 210, 12, 30, 17, 18, 0.1,  4.0, 1.1],
+    [40, 270, 14, 38, 22, 22, 0.5,  5.0, 1.4],
+    [46, 175, 8,  26, 15, 14, 1.2,  3.4, 0.92],
+    [52, 240, 12, 34, 19, 19, 0.4,  4.5, 1.2],
+    [58, 195, 10, 28, 16, 16, 0.9,  3.9, 1.0],
+    [64, 215, 12, 32, 18, 17, 0.2,  4.1, 1.1],
+    [70, 260, 14, 36, 21, 21, 0.7,  4.9, 1.35],
+    [76, 180, 10, 26, 15, 15, 1.1,  3.7, 0.95],
+    [82, 230, 12, 32, 18, 18, 0.3,  4.3, 1.15],
+    [88, 200, 10, 28, 16, 16, 0.6,  3.8, 1.05],
+    [94, 170, 8,  24, 14, 14, 1.4,  3.5, 0.88],
+  ];
 
-    <div class="footer">
-      <div class="update-time" id="last-update">Esperando datos...</div>
-      <div class="system-id">PARQ-NODE-001</div>
-    </div>
-  </div>
+  const garden = document.getElementById('garden');
 
-  <script>
-    const TOTAL = 20;  // ← Actualizado a 20 espacios
+  flowerDefs.forEach(([x, stemH, petN, petW, petH, centR, delay, swayDur, sc]) => {
+    const group = document.createElement('div');
+    group.className = 'flower-group';
+    group.style.cssText = `left:${x}%;`;
 
-    // Generar 20 cajones
-    const grid = document.getElementById('slots-grid');
-    for (let i = 1; i <= TOTAL; i++) {
-      const slot = document.createElement('div');
-      slot.className = 'slot free';
-      slot.id = 'slot-' + i;
-      slot.innerHTML = `<span class="car-icon">🚗</span><span class="slot-num">${String(i).padStart(2,'0')}</span>`;
-      grid.appendChild(slot);
+    // ── Tallo ──
+    const stemWrap = document.createElement('div');
+    stemWrap.className = 'stem';
+    stemWrap.style.animation = `sway ${swayDur}s ease-in-out infinite`;
+    stemWrap.style.animationDelay = `${delay}s`;
+
+    // Hoja izquierda
+    const leafL = document.createElement('div');
+    leafL.className = 'leaf';
+    leafL.style.cssText = `bottom:${stemH*0.38}px;left:-18px;transform:rotate(-30deg);`;
+
+    // Hoja derecha
+    const leafR = document.createElement('div');
+    leafR.className = 'leaf right';
+    leafR.style.cssText = `bottom:${stemH*0.55}px;right:-18px;transform:rotate(30deg);`;
+
+    const stemLine = document.createElement('div');
+    stemLine.className = 'stem-line';
+    stemLine.style.height = `${stemH}px`;
+
+    // ── Flor ──
+    const flowerSize = (petW * 2 + centR * 2) * sc;
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.cssText = `
+      width:${flowerSize}px;
+      height:${flowerSize}px;
+      animation: bloom 1s ease-out both, gentle-bob ${2.5 + delay}s ease-in-out infinite;
+      animation-delay: ${delay * 0.4}s, ${delay + 1}s;
+    `;
+
+    const petalsDiv = document.createElement('div');
+    petalsDiv.className = 'petals';
+
+    for (let i = 0; i < petN; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      const angle = (360 / petN) * i;
+      const dist  = centR * 0.85 * sc;
+      petal.style.cssText = `
+        width:${petW * sc}px;
+        height:${petH * sc}px;
+        transform: rotate(${angle}deg) translateY(-${dist}px);
+        opacity: ${0.85 + Math.random() * 0.15};
+      `;
+      petalsDiv.appendChild(petal);
     }
 
-    function getClass(val) {
-      if (val >= 15) return 'red';     // ≥75% ocupado → rojo
-      if (val >= 8) return 'orange';   // 40%–74% → naranja
-      return 'green';                  // <40% → verde
-    }
+    const center = document.createElement('div');
+    center.className = 'center';
+    center.style.cssText = `width:${centR * 2 * sc}px;height:${centR * 2 * sc}px;`;
 
-    function updateUI(occupied) {
-      const cls = getClass(occupied);
-      const available = TOTAL - occupied;
-      const pct = Math.round((occupied / TOTAL) * 100);
+    flower.appendChild(petalsDiv);
+    flower.appendChild(center);
 
-      // Big number
-      const bigNum = document.getElementById('big-num');
-      bigNum.textContent = occupied;
-      bigNum.className = 'big-number ' + cls;
-      bigNum.classList.add('flash');
-      setTimeout(() => bigNum.classList.remove('flash'), 300);
+    stemWrap.appendChild(leafL);
+    stemWrap.appendChild(leafR);
+    stemWrap.appendChild(stemLine);
+    stemWrap.appendChild(flower);
+    group.appendChild(stemWrap);
+    garden.appendChild(group);
+  });
 
-      // Counter card glow
-      document.getElementById('counter-card').className = 'counter-card ' + cls;
+  // ── Partículas de luz ──
+  for (let i = 0; i < 22; i++) {
+    const sp = document.createElement('div');
+    sp.className = 'sparkle';
+    sp.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${30 + Math.random()*55}%;
+      animation-duration:${3 + Math.random()*5}s;
+      animation-delay:${Math.random()*6}s;
+      opacity:0;
+      width:${3+Math.random()*5}px;
+      height:${3+Math.random()*5}px;
+    `;
+    document.body.appendChild(sp);
+  }
+</script>
 
-      // Fraction
-      document.getElementById('fraction').textContent = occupied + ' / ' + TOTAL;
-
-      // Available
-      document.getElementById('avail-num').textContent = available;
-      document.getElementById('avail-num').className = 'stat-value ' + cls;
-      document.getElementById('avail-card').className = 'stat-card ' + cls;
-
-      // Pct
-      document.getElementById('pct-num').textContent = pct + '%';
-      document.getElementById('pct-num').className = 'stat-value ' + cls;
-      document.getElementById('pct-card').className = 'stat-card ' + cls;
-
-      // Progress
-      const fill = document.getElementById('progress-fill');
-      fill.style.width = pct + '%';
-      fill.className = 'progress-fill ' + cls;
-      document.getElementById('progress-label').textContent = pct + '%';
-
-      // Slots (20 cajones)
-      for (let i = 1; i <= TOTAL; i++) {
-        const el = document.getElementById('slot-' + i);
-        el.className = 'slot ' + (i <= occupied ? 'occupied' : 'free');
-      }
-
-      // Time
-      const now = new Date();
-      document.getElementById('last-update').textContent =
-        'Última actualización: ' + now.toLocaleTimeString('es-MX') + ' · ' + now.toLocaleDateString('es-MX');
-    }
-
-    // MQTT
-    const broker = 'wss://broker.hivemq.com:8884/mqtt';
-    const topic = 'xai/estacionamiento/ocupados';
-    const clientId = 'parq_dash_' + Math.random().toString(16).substr(2, 8);
-
-    const client = mqtt.connect(broker, {
-      clientId,
-      clean: true,
-      reconnectPeriod: 5000,
-      connectTimeout: 30000
-    });
-
-    client.on('connect', () => {
-      document.getElementById('live-dot').className = 'live-dot';
-      document.getElementById('live-text').textContent = 'EN VIVO';
-      client.subscribe(topic);
-    });
-
-    client.on('message', (t, msg) => {
-      const val = Math.min(Math.max(parseInt(msg.toString()) || 0, 0), TOTAL);
-      updateUI(val);
-    });
-
-    client.on('error', (err) => {
-      document.getElementById('live-dot').className = 'live-dot red';
-      document.getElementById('live-text').textContent = 'ERROR';
-    });
-
-    client.on('close', () => {
-      document.getElementById('live-dot').className = 'live-dot red';
-      document.getElementById('live-text').textContent = 'RECONECTANDO';
-    });
-
-    client.on('reconnect', () => {
-      document.getElementById('live-dot').className = 'live-dot red';
-      document.getElementById('live-text').textContent = 'RECONECTANDO';
-    });
-  </script>
 </body>
 </html>
