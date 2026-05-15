@@ -1,341 +1,1227 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FastService Ultra</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- =========================================================
+       META
+  ========================================================== -->
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
 
-<link rel="stylesheet" href="style.css">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  />
+
+  <meta
+    name="theme-color"
+    content="#ff5a1f"
+  />
+
+  <meta
+    name="description"
+    content="FastService Campus - Pickup premium universitario."
+  />
+
+  <title>
+    FastService Campus
+  </title>
+
+  <!-- =========================================================
+       PWA
+  ========================================================== -->
+
+  <link
+    rel="manifest"
+    href="./manifest.json"
+  />
+
+  <!-- =========================================================
+       ICON
+  ========================================================== -->
+
+  <link
+    rel="icon"
+    href="./assets/icons/icon-192.png"
+  />
+
+  <!-- =========================================================
+       FONTS
+  ========================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =========================================================
+       CSS
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  />
 
 </head>
 
 <body>
 
-<!-- SPLASH -->
-
-<div class="splash" id="splash">
-
-  <div class="logo-box">
-
-    <div class="logo-circle">
-      ⚡
-    </div>
-
-    <h1>
-      FASTSERVICE
-    </h1>
-
-    <p>
-      Cargando experiencia premium...
-    </p>
-
-    <div class="loader"></div>
-
-  </div>
-
-</div>
-
-<!-- TOAST -->
-
-<div class="toast" id="toast"></div>
-
-<!-- APP -->
-
-<div class="app">
-
-<header class="header glass">
-
-  <div>
-
-    <p class="small">
-      Entrega inmediata
-    </p>
-
-    <h1>
-      📍 Campus Central
-    </h1>
-
-  </div>
-
-  <button id="themeToggle" class="icon-btn">
-    🌙
-  </button>
-
-</header>
-
-<section class="search-wrapper glass">
-
-  <span>🔍</span>
-
-  <input
-  type="text"
-  id="searchInput"
-  placeholder="Buscar comida..."
-  >
-
-</section>
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <span class="badge">
-      ⚡ ENTREGA EXPRESS
-    </span>
-
-    <h2>
-      Pide comida<br>
-      sin filas
-    </h2>
-
-    <p>
-      Inspirado en apps premium tipo Uber Eats.
-    </p>
-
-    <button class="hero-btn">
-      Ordenar ahora
-    </button>
-
-  </div>
-
-  <img
-  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
-  >
-
-</section>
-
-<section class="categories">
-
-  <button class="category active">
-    🍔 Burgers
-  </button>
-
-  <button class="category">
-    🌮 Tacos
-  </button>
-
-  <button class="category">
-    🍕 Pizza
-  </button>
-
-  <button class="category">
-    🥤 Drinks
-  </button>
-
-</section>
-
-<section class="section-head">
-
-  <div>
-
-    <p class="small">
-      Top restaurantes
-    </p>
-
-    <h3>
-      Populares
-    </h3>
-
-  </div>
-
-  <button class="see-all">
-    Ver todo
-  </button>
-
-</section>
-
-<section
-class="products"
-id="products"
->
-
-</section>
-
-</div>
-
-<!-- CART -->
-
-<button class="cart-btn" id="cartBtn">
-
-  🛒
-
-  <span id="cartCount">
-    0
-  </span>
-
-</button>
-
-<!-- NAVBAR -->
-
-<nav class="navbar glass">
-
-  <button class="nav-item active">
-    🏠
-  </button>
-
-  <button class="nav-item">
-    🔍
-  </button>
-
-  <button class="nav-item">
-    ❤️
-  </button>
-
-  <button class="nav-item">
-    👤
-  </button>
-
-</nav>
-
-<!-- CART MODAL -->
-
-<div class="modal" id="cartModal">
-
-  <div class="sheet">
-
-    <div class="sheet-top">
-
-      <h2>
-        🛒 Tu carrito
-      </h2>
-
-      <button class="close-modal">
-        ✕
-      </button>
-
-    </div>
-
-    <div class="cart-items" id="cartItems"></div>
-
-    <div class="total-box">
-
-      <span>
-        Total
-      </span>
-
-      <strong id="totalPrice">
-        $0
-      </strong>
-
-    </div>
-
-    <div class="payment-methods">
-
-      <h4>
-        Método de pago
-      </h4>
-
-      <button
-      class="payment active-payment"
-      data-method="Efectivo"
-      >
-        💵 Efectivo
-      </button>
-
-      <button
-      class="payment"
-      data-method="Tarjeta"
-      >
-        💳 Tarjeta
-      </button>
-
-    </div>
-
-    <div class="card-form" id="cardForm">
-
-      <input type="text" placeholder="Nombre en tarjeta">
-
-      <input type="text" placeholder="Número de tarjeta">
-
-      <div class="card-row">
-
-        <input type="text" placeholder="MM/YY">
-
-        <input type="text" placeholder="CVV">
-
+  <!-- =========================================================
+       APP CONTAINER
+  ========================================================== -->
+
+  <div class="app-shell">
+
+    <!-- =====================================================
+         SPLASH SCREEN
+    ====================================================== -->
+
+    <section
+      class="splash-screen"
+      id="splashScreen"
+    >
+
+      <div class="splash-screen__logo">
+        🍔
       </div>
 
-    </div>
-
-    <button class="checkout-btn" id="checkoutBtn">
-      Finalizar pedido
-    </button>
-
-  </div>
-
-</div>
-
-<!-- PROFILE -->
-
-<div class="modal" id="profileModal">
-
-  <div class="sheet">
-
-    <div class="sheet-top">
-
-      <h2>
-        👤 Perfil
-      </h2>
-
-      <button class="close-profile">
-        ✕
-      </button>
-
-    </div>
-
-    <div class="profile">
-
-      <div class="avatar">
-        P
-      </div>
-
-      <h3>
-        Pablo
-      </h3>
+      <h1>
+        FastService
+      </h1>
 
       <p>
-        Usuario Premium
+        Campus Pickup Experience
       </p>
 
-      <div class="stats">
+      <div class="splash-loader">
+        <span></span>
+      </div>
 
-        <div>
+    </section>
 
-          <strong id="ordersCount">
-            0
-          </strong>
+    <!-- =====================================================
+         GLOBAL BACKDROP
+    ====================================================== -->
 
-          <span>
-            Pedidos
-          </span>
+    <div
+      class="global-backdrop"
+      id="globalBackdrop"
+    ></div>
 
-        </div>
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
 
-        <div>
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+    >
+      Acción realizada 🚀
+    </div>
 
-          <strong id="favoritesCount">
-            0
-          </strong>
+    <!-- =====================================================
+         PUSH NOTIFICATION
+    ====================================================== -->
 
-          <span>
-            Favoritos
-          </span>
+    <div
+      class="push-notification"
+      id="pushNotification"
+    >
 
-        </div>
+      <div class="push-notification__icon">
+        🚀
+      </div>
+
+      <div class="push-notification__content">
+
+        <strong>
+          FastService
+        </strong>
+
+        <p id="pushText">
+          Nueva notificación
+        </p>
 
       </div>
 
     </div>
 
+    <!-- =====================================================
+         AUTH SCREEN
+    ====================================================== -->
+
+    <section
+      class="auth-screen"
+      id="authScreen"
+    >
+
+      <div class="auth-screen__gradient"></div>
+
+      <div class="auth-card">
+
+        <!-- BRAND -->
+
+        <div class="auth-brand">
+
+          <div class="auth-brand__logo">
+            🍔
+          </div>
+
+          <div>
+
+            <h1>
+              FastService
+            </h1>
+
+            <p>
+              Pickup inteligente universitario
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- LOGIN FORM -->
+
+        <form
+          class="auth-form"
+          id="loginForm"
+        >
+
+          <!-- USER -->
+
+          <div class="input-group">
+
+            <label for="loginUser">
+              Usuario
+            </label>
+
+            <input
+              type="text"
+              id="loginUser"
+              placeholder="Ingresa tu usuario"
+              autocomplete="username"
+              required
+            />
+
+          </div>
+
+          <!-- PASSWORD -->
+
+          <div class="input-group">
+
+            <label for="loginPass">
+              Contraseña
+            </label>
+
+            <div class="password-wrapper">
+
+              <input
+                type="password"
+                id="loginPass"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              />
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                aria-label="Mostrar contraseña"
+                data-ripple
+              >
+                👁️
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- OPTIONS -->
+
+          <div class="auth-options">
+
+            <label class="remember-me">
+
+              <input
+                type="checkbox"
+                id="rememberUser"
+              />
+
+              <span>
+                Recordarme
+              </span>
+
+            </label>
+
+            <button
+              type="button"
+              class="auth-link"
+            >
+              ¿Olvidaste tu contraseña?
+            </button>
+
+          </div>
+
+          <!-- SUBMIT -->
+
+          <button
+            type="submit"
+            class="primary-btn"
+            data-ripple
+          >
+
+            Entrar 🚀
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         APP WRAPPER
+    ====================================================== -->
+
+    <div
+      class="app-wrapper"
+      id="appWrapper"
+    >
+
+      <!-- =================================================
+           STATUS BAR
+      ================================================== -->
+
+      <header class="status-bar">
+
+        <span class="status-time">
+          00:00
+        </span>
+
+        <div class="status-icons">
+
+          <span>📶</span>
+          <span>📡</span>
+          <span>🔋</span>
+
+        </div>
+
+      </header>
+
+      <!-- =================================================
+           MAIN CONTENT
+      ================================================== -->
+
+      <main class="main-content">
+
+        <!-- =================================================
+             HOME VIEW
+        ================================================== -->
+
+        <section
+          class="view active"
+          id="view-home"
+          data-view="home"
+        >
+
+          <!-- HERO -->
+
+          <section class="hero-section">
+
+            <div class="hero-top">
+
+              <!-- LOCATION -->
+
+              <div class="location-box">
+
+                <span>
+                  📍
+                </span>
+
+                <div>
+
+                  <small>
+                    Campus
+                  </small>
+
+                  <strong>
+                    Universidad de Colima
+                  </strong>
+
+                </div>
+
+              </div>
+
+              <!-- THEME -->
+
+              <button
+                class="theme-btn"
+                id="themeToggle"
+                data-ripple
+                aria-label="Cambiar tema"
+              >
+                🌙
+              </button>
+
+            </div>
+
+            <!-- HERO TEXT -->
+
+            <div class="hero-text">
+
+              <p>
+                Hola Pablo 👋
+              </p>
+
+              <h1>
+                Ordena antes y evita filas
+              </h1>
+
+            </div>
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+              <span>
+                🔎
+              </span>
+
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar comida..."
+                autocomplete="off"
+              />
+
+            </div>
+
+          </section>
+
+          <!-- =================================================
+               PREMIUM BANNER
+          ================================================== -->
+
+          <section class="premium-banner">
+
+            <div class="premium-banner__blur"></div>
+
+            <div class="premium-banner__content">
+
+              <span class="premium-tag">
+                FAST PICKUP EXPERIENCE
+              </span>
+
+              <h2>
+                Recoge sin esperar 🚀
+              </h2>
+
+              <p>
+                Ordena desde tu salón y pasa directo.
+              </p>
+
+              <button
+                class="premium-btn"
+                data-ripple
+              >
+                Ordenar ahora
+              </button>
+
+            </div>
+
+            <div class="premium-banner__emoji">
+              🍟
+            </div>
+
+          </section>
+
+          <!-- =================================================
+               CATEGORIES
+          ================================================== -->
+
+          <section class="categories-section">
+
+            <div class="section-header">
+
+              <h2>
+                Categorías
+              </h2>
+
+            </div>
+
+            <div class="categories-scroll">
+
+              <button
+                class="category-pill active"
+                data-category="all"
+              >
+                🍽️ Todo
+              </button>
+
+              <button
+                class="category-pill"
+                data-category="burger"
+              >
+                🍔 Burgers
+              </button>
+
+              <button
+                class="category-pill"
+                data-category="pizza"
+              >
+                🍕 Pizza
+              </button>
+
+              <button
+                class="category-pill"
+                data-category="healthy"
+              >
+                🥗 Healthy
+              </button>
+
+              <button
+                class="category-pill"
+                data-category="coffee"
+              >
+                ☕ Café
+              </button>
+
+            </div>
+
+          </section>
+
+          <!-- =================================================
+               RESTAURANTS GRID
+          ================================================== -->
+
+          <section
+            class="restaurants-grid"
+            id="restaurantsContainer"
+          >
+
+            <!-- =================================================
+                 CARD 1
+            ================================================== -->
+
+            <article
+              class="restaurant-card"
+              data-category="burger"
+              data-id="burger-lab"
+            >
+
+              <div class="restaurant-card__image">
+
+                <img
+                  loading="lazy"
+                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
+                  alt="Burger Lab"
+                />
+
+                <span class="restaurant-badge">
+                  🔥 HOT
+                </span>
+
+              </div>
+
+              <div class="restaurant-card__body">
+
+                <div class="restaurant-card__top">
+
+                  <div>
+
+                    <h2>
+                      Burger Lab
+                    </h2>
+
+                    <p>
+                      Pickup • 10 min
+                    </p>
+
+                  </div>
+
+                  <button
+                    class="restaurant-fav"
+                    data-ripple
+                    aria-label="Agregar a favoritos"
+                  >
+                    ♡
+                  </button>
+
+                </div>
+
+                <!-- PRODUCTS -->
+
+                <div class="restaurant-products-preview">
+
+                  <!-- PRODUCT -->
+
+                  <article
+                    class="product-card"
+                    data-id="burger_smash"
+                    data-name="Smash Burger"
+                    data-price="145"
+                  >
+
+                    <div>
+
+                      <h3>
+                        Smash Burger
+                      </h3>
+
+                      <p>
+                        Carne smash premium
+                      </p>
+
+                      <strong>
+                        $145
+                      </strong>
+
+                    </div>
+
+                    <button
+                      class="add-btn"
+                      data-action="add-cart"
+                      data-ripple
+                    >
+                      +
+                    </button>
+
+                  </article>
+
+                  <!-- PRODUCT -->
+
+                  <article
+                    class="product-card"
+                    data-id="burger_bacon"
+                    data-name="Bacon Monster"
+                    data-price="189"
+                  >
+
+                    <div>
+
+                      <h3>
+                        Bacon Monster
+                      </h3>
+
+                      <p>
+                        Triple carne + bacon
+                      </p>
+
+                      <strong>
+                        $189
+                      </strong>
+
+                    </div>
+
+                    <button
+                      class="add-btn"
+                      data-action="add-cart"
+                      data-ripple
+                    >
+                      +
+                    </button>
+
+                  </article>
+
+                </div>
+
+              </div>
+
+            </article>
+
+            <!-- =================================================
+                 CARD 2
+            ================================================== -->
+
+            <article
+              class="restaurant-card"
+              data-category="pizza"
+              data-id="pizza-max"
+            >
+
+              <div class="restaurant-card__image">
+
+                <img
+                  loading="lazy"
+                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"
+                  alt="Pizza Max"
+                />
+
+                <span class="restaurant-badge">
+                  🍕 TOP
+                </span>
+
+              </div>
+
+              <div class="restaurant-card__body">
+
+                <div class="restaurant-card__top">
+
+                  <div>
+
+                    <h2>
+                      Pizza Max
+                    </h2>
+
+                    <p>
+                      Pickup • 12 min
+                    </p>
+
+                  </div>
+
+                  <button
+                    class="restaurant-fav"
+                    data-ripple
+                    aria-label="Agregar a favoritos"
+                  >
+                    ♡
+                  </button>
+
+                </div>
+
+                <div class="restaurant-products-preview">
+
+                  <article
+                    class="product-card"
+                    data-id="pizza_pepperoni"
+                    data-name="Pepperoni XL"
+                    data-price="245"
+                  >
+
+                    <div>
+
+                      <h3>
+                        Pepperoni XL
+                      </h3>
+
+                      <p>
+                        Extra queso premium
+                      </p>
+
+                      <strong>
+                        $245
+                      </strong>
+
+                    </div>
+
+                    <button
+                      class="add-btn"
+                      data-action="add-cart"
+                      data-ripple
+                    >
+                      +
+                    </button>
+
+                  </article>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </section>
+
+        </section>
+
+        <!-- =================================================
+             ORDERS VIEW
+        ================================================== -->
+
+        <section
+          class="view"
+          id="view-orders"
+          data-view="orders"
+        >
+
+          <section class="pickup-hero">
+
+            <div class="pickup-hero__glow"></div>
+
+            <small>
+              FASTSERVICE CAMPUS
+            </small>
+
+            <h1>
+              Tu comida estará lista pronto 🍔
+            </h1>
+
+            <p>
+              Evita filas y recoge directamente.
+            </p>
+
+          </section>
+
+          <!-- ACTIVE ORDER -->
+
+          <section class="pickup-card">
+
+            <div class="pickup-card__top">
+
+              <div>
+
+                <small>
+                  Pedido actual
+                </small>
+
+                <h2 id="pickupOrderNumber">
+                  #4582
+                </h2>
+
+              </div>
+
+              <div
+                class="pickup-status"
+                id="pickupStatus"
+              >
+
+                Preparando
+
+              </div>
+
+            </div>
+
+            <!-- TIMER -->
+
+            <div class="pickup-time-box">
+
+              <small>
+                Tiempo restante
+              </small>
+
+              <h1 id="pickupCountdown">
+                08:24
+              </h1>
+
+            </div>
+
+            <!-- PROGRESS -->
+
+            <div class="pickup-progress">
+
+              <div
+                class="pickup-progress__bar"
+                id="pickupProgressBar"
+              ></div>
+
+            </div>
+
+            <!-- QR -->
+
+            <div class="pickup-qr">
+
+              <div class="pickup-qr__fake">
+                QR
+              </div>
+
+              <p>
+                Muestra este código al recoger.
+              </p>
+
+            </div>
+
+          </section>
+
+          <!-- HISTORY -->
+
+          <section
+            class="orders-history"
+            id="ordersHistory"
+          ></section>
+
+        </section>
+
+        <!-- =================================================
+             PROFILE VIEW
+        ================================================== -->
+
+        <section
+          class="view"
+          id="view-profile"
+          data-view="profile"
+        >
+
+          <!-- PROFILE HERO -->
+
+          <section class="profile-hero">
+
+            <div class="profile-avatar">
+              PM
+            </div>
+
+            <h2>
+              Pablo Manzo
+            </h2>
+
+            <p>
+              Gold Member ✨
+            </p>
+
+          </section>
+
+          <!-- PROFILE STATS -->
+
+          <section class="profile-stats">
+
+            <article class="profile-stat">
+
+              <strong>
+                58
+              </strong>
+
+              <span>
+                Pedidos
+              </span>
+
+            </article>
+
+            <article class="profile-stat">
+
+              <strong>
+                12
+              </strong>
+
+              <span>
+                Favoritos
+              </span>
+
+            </article>
+
+            <article class="profile-stat">
+
+              <strong>
+                4.9
+              </strong>
+
+              <span>
+                Rating
+              </span>
+
+            </article>
+
+          </section>
+
+          <!-- MENU -->
+
+          <section class="profile-menu">
+
+            <button
+              class="profile-item"
+              data-ripple
+            >
+
+              <div class="profile-item__left">
+
+                <div class="profile-item__icon">
+                  💳
+                </div>
+
+                <div>
+
+                  <strong>
+                    Métodos de pago
+                  </strong>
+
+                  <p>
+                    Tarjetas guardadas
+                  </p>
+
+                </div>
+
+              </div>
+
+              <span class="profile-arrow">
+                ›
+              </span>
+
+            </button>
+
+            <button
+              class="profile-item"
+              data-ripple
+            >
+
+              <div class="profile-item__left">
+
+                <div class="profile-item__icon">
+                  ⚙️
+                </div>
+
+                <div>
+
+                  <strong>
+                    Configuración
+                  </strong>
+
+                  <p>
+                    Preferencias de la app
+                  </p>
+
+                </div>
+
+              </div>
+
+              <span class="profile-arrow">
+                ›
+              </span>
+
+            </button>
+
+            <button
+              class="profile-item profile-item--danger"
+              id="logoutBtn"
+              data-ripple
+            >
+
+              <div class="profile-item__left">
+
+                <div class="profile-item__icon profile-item__icon--danger">
+                  🚪
+                </div>
+
+                <div>
+
+                  <strong>
+                    Cerrar sesión
+                  </strong>
+
+                  <p>
+                    Salir de FastService
+                  </p>
+
+                </div>
+
+              </div>
+
+              <span class="profile-arrow">
+                ›
+              </span>
+
+            </button>
+
+          </section>
+
+        </section>
+
+      </main>
+
+      <!-- =================================================
+           CART FAB
+      ================================================== -->
+
+      <button
+        class="cart-fab"
+        id="cartFab"
+        data-ripple
+        aria-label="Abrir carrito"
+      >
+
+        🛒
+
+        <span id="fabCount">
+          0
+        </span>
+
+      </button>
+
+      <!-- =================================================
+           BOTTOM NAV
+      ================================================== -->
+
+      <nav class="bottom-nav">
+
+        <button
+          class="nav-btn active"
+          data-nav="home"
+          data-ripple
+        >
+
+          <span>
+            🏠
+          </span>
+
+          <small>
+            Inicio
+          </small>
+
+        </button>
+
+        <button
+          class="nav-btn"
+          data-nav="orders"
+          data-ripple
+        >
+
+          <span>
+            📦
+          </span>
+
+          <small>
+            Pedidos
+          </small>
+
+        </button>
+
+        <button
+          class="nav-btn"
+          data-nav="profile"
+          data-ripple
+        >
+
+          <span>
+            👤
+          </span>
+
+          <small>
+            Perfil
+          </small>
+
+        </button>
+
+      </nav>
+
+    </div>
+
+    <!-- =====================================================
+         CART DRAWER
+    ====================================================== -->
+
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+    >
+
+      <div class="drawer-header">
+
+        <h2>
+          Tu carrito
+        </h2>
+
+        <button
+          class="drawer-close"
+          id="closeDrawer"
+          data-ripple
+        >
+          ✕
+        </button>
+
+      </div>
+
+      <div
+        class="drawer-cart-items"
+        id="drawerCartItems"
+      >
+
+        <!-- JS -->
+
+      </div>
+
+      <div class="drawer-footer">
+
+        <div class="drawer-total">
+
+          <small>
+            Total
+          </small>
+
+          <strong id="drawerTotal">
+            $0
+          </strong>
+
+        </div>
+
+        <button
+          class="checkout-btn"
+          id="checkoutBtn"
+          data-ripple
+        >
+
+          Continuar pago 🚀
+
+        </button>
+
+      </div>
+
+    </aside>
+
+    <!-- =====================================================
+         PAYMENT MODAL
+    ====================================================== -->
+
+    <section
+      class="payment-modal"
+      id="paymentModal"
+    >
+
+      <div class="payment-modal__card">
+
+        <div class="payment-modal__header">
+
+          <h2>
+            Método de pago
+          </h2>
+
+          <button
+            id="closePaymentModal"
+            data-ripple
+          >
+            ✕
+          </button>
+
+        </div>
+
+        <div
+          class="payment-methods"
+          id="paymentMethods"
+        ></div>
+
+        <button
+          class="checkout-btn"
+          id="confirmPayment"
+          data-ripple
+        >
+
+          Confirmar pago ✅
+
+        </button>
+
+      </div>
+
+    </section>
+
   </div>
 
-</div>
+  <!-- =========================================================
+       JS
+  ========================================================== -->
 
-<script src="script.js"></script>
+  <script
+    src="./script.js"
+    defer
+  ></script>
 
 </body>
 </html>
