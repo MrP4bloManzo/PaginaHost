@@ -2,12 +2,8 @@
 
 /* =========================================================
    FASTSERVICE CAMPUS
-   NEXT GEN FULL PRO ENGINE
-   RESTRUCTURED + OPTIMIZED
-========================================================= */
-
-/* =========================================================
-   GLOBAL APP
+   ULTRA PREMIUM NEXT GEN ENGINE
+   FULL RESTRUCTURED APP
 ========================================================= */
 
 window.FastService =
@@ -72,7 +68,9 @@ App.debounce = (
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
+
       callback(...args);
+
     }, delay);
 
   };
@@ -80,13 +78,13 @@ App.debounce = (
 };
 
 /* =========================================================
-   SAFE STORAGE
+   STORAGE
 ========================================================= */
 
 App.Storage = {
 
   key:
-    'fastservice_nextgen_v2',
+    'fastservice-campus-v3',
 
   get() {
 
@@ -110,28 +108,17 @@ App.Storage = {
 
   save(data) {
 
-    try {
-
-      localStorage.setItem(
-        this.key,
-        JSON.stringify(data)
-      );
-
-    } catch (error) {
-
-      console.error(
-        'Storage Error:',
-        error
-      );
-
-    }
+    localStorage.setItem(
+      this.key,
+      JSON.stringify(data)
+    );
 
   }
 
 };
 
 /* =========================================================
-   APP STATE
+   STATE
 ========================================================= */
 
 App.State = {
@@ -142,11 +129,15 @@ App.State = {
 
   currentView: 'home',
 
+  currentStore: null,
+
   favorites: [],
 
   cart: [],
 
   orders: [],
+
+  paymentType: 'cash',
 
   payment: {
 
@@ -173,6 +164,355 @@ App.State = {
 };
 
 /* =========================================================
+   DATA
+========================================================= */
+
+App.Data = {
+
+  stores: [
+
+    {
+      id: 'ccc',
+      name:
+        'CCC Cocina con Conciencia',
+
+      products: [
+
+        {
+          id: 'bowl_pollo',
+          name:
+            'Bowl de Pollo',
+
+          price: 125,
+
+          image:
+            'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'bowl_atun',
+          name:
+            'Bowl de Atún',
+
+          price: 145,
+
+          image:
+            'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'agua_dia',
+          name:
+            'Agua del día',
+
+          price: 35,
+
+          image:
+            'https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'baguette_pollo',
+          name:
+            'Baguette de pollo',
+
+          price: 89,
+
+          image:
+            'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'ensalada_cesar',
+          name:
+            'Ensalada César',
+
+          price: 110,
+
+          image:
+            'https://images.unsplash.com/photo-1546793665-c74683f339c1?q=80&w=1200&auto=format&fit=crop'
+        }
+
+      ]
+
+    },
+
+    {
+      id: 'tiendita',
+      name: 'Tiendita',
+
+      products: [
+
+        {
+          id: 'papitas',
+          name: 'Papitas',
+          price: 22,
+          image:
+            'https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'refrescos',
+          name: 'Refrescos',
+          price: 28,
+          image:
+            'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'fruta_picada',
+          name: 'Fruta picada',
+          price: 45,
+          image:
+            'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'comida_rapida',
+          name: 'Comida rápida',
+          price: 75,
+          image:
+            'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'galletas',
+          name: 'Galletas',
+          price: 18,
+          image:
+            'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'tacos_tux',
+          name: 'Tacos Tuxpeños',
+          price: 95,
+          image:
+            'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=1200&auto=format&fit=crop'
+        }
+
+      ]
+
+    },
+
+    {
+      id: 'papeleria',
+      name: 'Papelería',
+
+      products: [
+
+        {
+          id: 'copias',
+          name: 'Copias',
+          price: 1.5,
+          image:
+            'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'plumas',
+          name: 'Plumas',
+          price: 12,
+          image:
+            'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'carpetas',
+          name: 'Carpetas',
+          price: 38,
+          image:
+            'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'lapiz',
+          name: 'Lápiz',
+          price: 8,
+          image:
+            'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'pines',
+          name: 'Pines',
+          price: 4,
+          image:
+            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'clips',
+          name: 'Clips',
+          price: 6,
+          image:
+            'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop'
+        }
+
+      ]
+
+    },
+
+    {
+      id: 'cafeteria',
+      name: 'Cafetería',
+
+      products: [
+
+        {
+          id: 'espresso',
+          name: 'Café expreso',
+          price: 42,
+          image:
+            'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'frapuccino',
+          name: 'Frapuchino',
+          price: 78,
+          image:
+            'https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'cafe_helado',
+          name: 'Café helado',
+          price: 58,
+          image:
+            'https://images.unsplash.com/photo-1517701550927-30cf4ba1fddf?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'pastel',
+          name:
+            'Pastel chocolate',
+
+          price: 68,
+
+          image:
+            'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'pay',
+          name:
+            'Pay del día',
+
+          price: 55,
+
+          image:
+            'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'moka',
+          name:
+            'Moka blanco',
+
+          price: 74,
+
+          image:
+            'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1200&auto=format&fit=crop'
+        }
+
+      ]
+
+    },
+
+    {
+      id: 'servicios',
+      name:
+        'Cafetería de Servicios',
+
+      products: [
+
+        {
+          id: 'comida_dia',
+          name:
+            'Comida del día',
+
+          price: 95,
+
+          image:
+            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'hotcakes',
+          name:
+            'Hot-Cakes',
+
+          price: 80,
+
+          image:
+            'https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'jugos',
+          name:
+            'Jugos',
+
+          price: 38,
+
+          image:
+            'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'enchiladas',
+          name:
+            'Enchiladas',
+
+          price: 92,
+
+          image:
+            'https://images.unsplash.com/photo-1534352956036-cd81e27dd615?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'tortas',
+          name:
+            'Tortas',
+
+          price: 65,
+
+          image:
+            'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'tacos',
+          name:
+            'Tacos',
+
+          price: 28,
+
+          image:
+            'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=1200&auto=format&fit=crop'
+        },
+
+        {
+          id: 'burritos',
+          name:
+            'Burritos',
+
+          price: 85,
+
+          image:
+            'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?q=80&w=1200&auto=format&fit=crop'
+        }
+
+      ]
+
+    }
+
+  ]
+
+};
+
+/* =========================================================
    LOAD STORAGE
 ========================================================= */
 
@@ -184,7 +524,6 @@ App.loadStorage = () => {
   App.State = {
 
     ...App.State,
-
     ...saved
 
   };
@@ -193,7 +532,7 @@ App.loadStorage = () => {
 
 App.saveStorage = () => {
 
-  const persist = {
+  App.Storage.save({
 
     logged:
       App.State.logged,
@@ -213,28 +552,21 @@ App.saveStorage = () => {
     payment:
       App.State.payment
 
-  };
-
-  App.Storage.save(
-    persist
-  );
+  });
 
 };
 
 /* =========================================================
-   UI CACHE
+   UI
 ========================================================= */
 
 App.UI = {
 
-  splash:
-    App.$('#splashScreen'),
+  auth:
+    App.$('#authScreen'),
 
   toast:
     App.$('#toast'),
-
-  auth:
-    App.$('#authScreen'),
 
   push:
     App.$('#pushNotification'),
@@ -242,29 +574,26 @@ App.UI = {
   pushText:
     App.$('#pushText'),
 
-  backdrop:
-    App.$('#globalBackdrop'),
-
   drawer:
     App.$('#cartDrawer'),
 
-  drawerItems:
+  backdrop:
+    App.$('#globalBackdrop'),
+
+  cartItems:
     App.$('#drawerCartItems'),
 
   drawerTotal:
     App.$('#drawerTotal'),
 
-  paymentModal:
-    App.$('#paymentModal'),
-
-  paymentMethods:
-    App.$('#paymentMethods'),
-
   cartFab:
     App.$('#cartFab'),
 
   fabCount:
-    App.$('#fabCount')
+    App.$('#fabCount'),
+
+  paymentModal:
+    App.$('#paymentModal')
 
 };
 
@@ -278,26 +607,21 @@ App.Toast = {
 
   show(message) {
 
-    const toast =
-      App.UI.toast;
-
-    if (!toast) return;
-
     clearTimeout(
       this.timeout
     );
 
-    toast.textContent =
+    App.UI.toast.textContent =
       message;
 
-    toast.classList.add(
+    App.UI.toast.classList.add(
       'show'
     );
 
     this.timeout =
       setTimeout(() => {
 
-        toast.classList.remove(
+        App.UI.toast.classList.remove(
           'show'
         );
 
@@ -316,11 +640,6 @@ App.Push = {
   timeout: null,
 
   show(message) {
-
-    if (
-      !App.UI.push ||
-      !App.UI.pushText
-    ) return;
 
     clearTimeout(
       this.timeout
@@ -347,82 +666,6 @@ App.Push = {
 };
 
 /* =========================================================
-   SPLASH
-========================================================= */
-
-App.Splash = {
-
-  init() {
-
-    if (!App.UI.splash)
-      return;
-
-    setTimeout(() => {
-
-      App.UI.splash.style.opacity =
-        '0';
-
-      App.UI.splash.style.pointerEvents =
-        'none';
-
-      setTimeout(() => {
-
-        App.UI.splash.remove();
-
-      }, 500);
-
-    }, 1800);
-
-  }
-
-};
-
-/* =========================================================
-   CLOCK
-========================================================= */
-
-App.Clock = {
-
-  interval: null,
-
-  init() {
-
-    this.update();
-
-    this.interval =
-      setInterval(() => {
-
-        this.update();
-
-      }, 1000);
-
-  },
-
-  update() {
-
-    const time =
-      new Date()
-        .toLocaleTimeString(
-          'es-MX',
-          {
-            hour: '2-digit',
-            minute: '2-digit'
-          }
-        );
-
-    App.$$('.status-time')
-      .forEach(element => {
-
-        element.textContent =
-          time;
-
-      });
-
-  }
-
-};
-
-/* =========================================================
    THEME
 ========================================================= */
 
@@ -435,8 +678,6 @@ App.Theme = {
         'data-theme',
         App.State.theme
       );
-
-    this.updateIcon();
 
   },
 
@@ -454,32 +695,51 @@ App.Theme = {
         App.State.theme
       );
 
-    this.updateIcon();
-
     App.saveStorage();
 
-    App.Toast.show(
+  }
 
-      App.State.theme === 'dark'
-        ? 'Modo oscuro activado 🌙'
-        : 'Modo claro activado ☀️'
+};
 
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+App.Navigation = {
+
+  go(view) {
+
+    App.State.currentView =
+      view;
+
+    App.$$('.view')
+      .forEach(viewElement => {
+
+        viewElement.classList.remove(
+          'active'
+        );
+
+      });
+
+    App.$(`#view-${view}`)
+      ?.classList.add(
+        'active'
+      );
+
+    App.$$('.nav-btn')
+      .forEach(button => {
+
+        button.classList.remove(
+          'active'
+        );
+
+      });
+
+    App.$(
+      `[data-nav="${view}"]`
+    )?.classList.add(
+      'active'
     );
-
-  },
-
-  updateIcon() {
-
-    const button =
-      App.$('#themeToggle');
-
-    if (!button) return;
-
-    button.textContent =
-
-      App.State.theme === 'dark'
-        ? '☀️'
-        : '🌙';
 
   }
 
@@ -518,15 +778,9 @@ App.Auth = {
         'Bienvenido 🚀'
       );
 
-      App.Push.show(
-        'Sesión iniciada'
-      );
-
       return;
 
     }
-
-    navigator.vibrate?.(120);
 
     App.Toast.show(
       'Credenciales inválidas ❌'
@@ -543,10 +797,6 @@ App.Auth = {
 
     App.UI.auth.style.display =
       'flex';
-
-    App.Toast.show(
-      'Sesión cerrada 👋'
-    );
 
   },
 
@@ -566,221 +816,122 @@ App.Auth = {
 };
 
 /* =========================================================
-   NAVIGATION
+   STORE VIEW
 ========================================================= */
 
-App.Navigation = {
+App.Store = {
 
-  go(view) {
+  open(storeId) {
 
-    App.State.currentView =
-      view;
-
-    App.$$('.view')
-      .forEach(section => {
-
-        section.classList.remove(
-          'active'
-        );
-
-      });
-
-    App.$(`#view-${view}`)
-      ?.classList.add(
-        'active'
+    const store =
+      App.Data.stores.find(
+        item =>
+          item.id === storeId
       );
 
-    App.$$('.nav-btn')
-      .forEach(button => {
+    if (!store)
+      return;
 
-        button.classList.remove(
-          'active'
-        );
+    App.State.currentStore =
+      store;
 
-      });
+    App.$('#storeTitle')
+      .textContent =
+      store.name;
 
-    App.$(
-      `[data-nav="${view}"]`
-    )?.classList.add(
-      'active'
+    this.renderProducts(
+      store.products
     );
 
-  }
-
-};
-
-/* =========================================================
-   RIPPLE EFFECT
-========================================================= */
-
-App.Ripple = {
-
-  create(
-    element,
-    event
-  ) {
-
-    const rect =
-      element.getBoundingClientRect();
-
-    const ripple =
-      App.createElement(
-        'span',
-        'ripple'
-      );
-
-    const size =
-      Math.max(
-        rect.width,
-        rect.height
-      );
-
-    ripple.style.width =
-      ripple.style.height =
-      `${size}px`;
-
-    ripple.style.left =
-      `${event.clientX - rect.left - size / 2}px`;
-
-    ripple.style.top =
-      `${event.clientY - rect.top - size / 2}px`;
-
-    element.appendChild(
-      ripple
+    App.Navigation.go(
+      'store'
     );
-
-    ripple.addEventListener(
-      'animationend',
-      () => ripple.remove(),
-      { once: true }
-    );
-
-  }
-
-};
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-App.Favorites = {
-
-  toggle(card) {
-
-    const id =
-      card.dataset.id;
-
-    const exists =
-      App.State.favorites
-        .includes(id);
-
-    if (exists) {
-
-      App.State.favorites =
-        App.State.favorites
-          .filter(item =>
-            item !== id
-          );
-
-    } else {
-
-      App.State.favorites
-        .push(id);
-
-      App.Toast.show(
-        'Agregado a favoritos ❤️'
-      );
-
-    }
-
-    App.saveStorage();
-
-    this.render();
 
   },
 
-  render() {
+  renderProducts(products) {
 
-    App.$$('.restaurant-card')
-      .forEach(card => {
+    const container =
+      App.$('#storeProducts');
 
-        const id =
-          card.dataset.id;
+    container.innerHTML = '';
 
-        const button =
-          card.querySelector(
-            '.restaurant-fav'
-          );
+    products.forEach(product => {
 
-        if (!button)
-          return;
+      const card =
+        App.createElement(
+          'article',
+          'product-card fade-up'
+        );
 
-        button.textContent =
+      card.innerHTML = `
 
-          App.State.favorites
-            .includes(id)
-              ? '♥'
-              : '♡';
+        <div class="product-card__image">
 
-      });
+          <img
+            loading="lazy"
+            src="${product.image}"
+            alt="${product.name}"
+          />
 
-  }
+        </div>
 
-};
+        <div class="product-card__content">
 
-/* =========================================================
-   FILTERS
-========================================================= */
+          <h3>
+            ${product.name}
+          </h3>
 
-App.Filters = {
+          <p>
+            Producto premium disponible para pickup.
+          </p>
 
-  search: '',
-  category: 'all',
+          <div class="product-card__footer">
 
-  apply() {
+            <strong>
+              ${App.formatPrice(
+                product.price
+              )}
+            </strong>
 
-    const search =
-      this.search
-        .toLowerCase();
+            <button
+              class="add-btn"
+              data-product="${product.id}"
+            >
+              +
+            </button>
 
-    App.$$('.restaurant-card')
-      .forEach(card => {
+          </div>
 
-        const category =
-          card.dataset.category;
+        </div>
 
-        const text =
-          card.textContent
-            .toLowerCase();
+      `;
 
-        const visible =
+      container.appendChild(
+        card
+      );
 
-          (
-            this.category === 'all'
-            ||
-            category === this.category
-          )
-
-          &&
-
-          text.includes(search);
-
-        card.hidden =
-          !visible;
-
-      });
+    });
 
   }
 
 };
 
 /* =========================================================
-   CART ENGINE
+   CART
 ========================================================= */
 
 App.Cart = {
 
-  add(product) {
+  add(productId) {
+
+    const product =
+      App.getProductById(
+        productId
+      );
+
+    if (!product)
+      return;
 
     const existing =
       App.State.cart.find(
@@ -797,14 +948,11 @@ App.Cart = {
       App.State.cart.push({
 
         ...product,
-
         qty: 1
 
       });
 
     }
-
-    navigator.vibrate?.(10);
 
     App.saveStorage();
 
@@ -818,12 +966,33 @@ App.Cart = {
 
   },
 
-  decrease(id) {
+  increase(productId) {
 
     const item =
       App.State.cart.find(
         product =>
-          product.id === id
+          product.id === productId
+      );
+
+    if (!item)
+      return;
+
+    item.qty++;
+
+    App.saveStorage();
+
+    this.render();
+
+    this.updateFab();
+
+  },
+
+  decrease(productId) {
+
+    const item =
+      App.State.cart.find(
+        product =>
+          product.id === productId
       );
 
     if (!item)
@@ -838,22 +1007,10 @@ App.Cart = {
       App.State.cart =
         App.State.cart.filter(
           product =>
-            product.id !== id
+            product.id !== productId
         );
 
     }
-
-    App.saveStorage();
-
-    this.render();
-
-    this.updateFab();
-
-  },
-
-  clear() {
-
-    App.State.cart = [];
 
     App.saveStorage();
 
@@ -906,38 +1063,18 @@ App.Cart = {
 
   },
 
-  updateFab() {
-
-    const total =
-      this.totalItems();
-
-    App.UI.cartFab
-      ?.classList.toggle(
-        'visible',
-        total > 0
-      );
-
-    if (App.UI.fabCount) {
-
-      App.UI.fabCount.textContent =
-        total;
-
-    }
-
-  },
-
   render() {
 
-    if (
-      !App.UI.drawerItems ||
-      !App.UI.drawerTotal
-    ) return;
+    const container =
+      App.UI.cartItems;
+
+    container.innerHTML = '';
 
     if (
       !App.State.cart.length
     ) {
 
-      App.UI.drawerItems.innerHTML = `
+      container.innerHTML = `
 
         <div class="empty-state">
 
@@ -964,21 +1101,60 @@ App.Cart = {
 
     }
 
-    App.UI.drawerItems.innerHTML =
+    App.State.cart.forEach(item => {
 
-      App.State.cart.map(item => `
+      const card =
+        App.createElement(
+          'article',
+          'product-card'
+        );
 
-        <article class="product-card fade-up">
+      card.innerHTML = `
 
-          <div>
+        <div class="product-card__image">
 
-            <h3>
-              ${item.name}
-            </h3>
+          <img
+            src="${item.image}"
+            alt="${item.name}"
+          />
 
-            <p>
-              Cantidad: ${item.qty}
-            </p>
+        </div>
+
+        <div class="product-card__content">
+
+          <h3>
+            ${item.name}
+          </h3>
+
+          <p>
+            ${App.formatPrice(
+              item.price
+            )}
+          </p>
+
+          <div class="product-card__footer">
+
+            <div class="quantity-box">
+
+              <button
+                class="quantity-btn"
+                data-decrease="${item.id}"
+              >
+                −
+              </button>
+
+              <span class="quantity-value">
+                ${item.qty}
+              </span>
+
+              <button
+                class="quantity-btn"
+                data-increase="${item.id}"
+              >
+                +
+              </button>
+
+            </div>
 
             <strong>
 
@@ -990,22 +1166,37 @@ App.Cart = {
 
           </div>
 
-          <button
-            class="add-btn"
-            data-remove="${item.id}"
-          >
-            −
-          </button>
+        </div>
 
-        </article>
+      `;
 
-      `).join('');
+      container.appendChild(
+        card
+      );
+
+    });
 
     App.UI.drawerTotal.textContent =
 
       App.formatPrice(
         this.total()
       );
+
+  },
+
+  updateFab() {
+
+    const total =
+      this.totalItems();
+
+    App.UI.cartFab
+      .classList.toggle(
+        'visible',
+        total > 0
+      );
+
+    App.UI.fabCount.textContent =
+      total;
 
   }
 
@@ -1020,12 +1211,12 @@ App.Drawer = {
   open() {
 
     App.UI.drawer
-      ?.classList.add(
+      .classList.add(
         'active'
       );
 
     App.UI.backdrop
-      ?.classList.add(
+      .classList.add(
         'active'
       );
 
@@ -1034,12 +1225,12 @@ App.Drawer = {
   close() {
 
     App.UI.drawer
-      ?.classList.remove(
+      .classList.remove(
         'active'
       );
 
     App.UI.backdrop
-      ?.classList.remove(
+      .classList.remove(
         'active'
       );
 
@@ -1053,21 +1244,68 @@ App.Drawer = {
 
 App.Payment = {
 
-  render() {
+  open() {
 
     if (
-      !App.UI.paymentMethods
-    ) return;
+      !App.State.cart.length
+    ) {
 
-    App.UI.paymentMethods.innerHTML =
+      App.Toast.show(
+        'Tu carrito está vacío 😕'
+      );
 
-      App.State.payment.cards
-        .map(card => `
+      return;
 
-        <button
-          class="payment-method"
-          data-payment="${card.id}"
-        >
+    }
+
+    App.UI.paymentModal
+      .classList.add(
+        'active'
+      );
+
+    App.UI.backdrop
+      .classList.add(
+        'active'
+      );
+
+    this.renderCards();
+
+  },
+
+  close() {
+
+    App.UI.paymentModal
+      .classList.remove(
+        'active'
+      );
+
+    App.UI.backdrop
+      .classList.remove(
+        'active'
+      );
+
+  },
+
+  renderCards() {
+
+    const container =
+      App.$('#paymentMethods');
+
+    container.innerHTML = '';
+
+    App.State.payment.cards
+      .forEach(card => {
+
+        const button =
+          App.createElement(
+            'button',
+            'payment-method'
+          );
+
+        button.dataset.card =
+          card.id;
+
+        button.innerHTML = `
 
           <div>
 
@@ -1092,58 +1330,102 @@ App.Payment = {
 
           </span>
 
-        </button>
+        `;
 
-      `).join('');
+        container.appendChild(
+          button
+        );
+
+      });
 
   },
 
-  open() {
+  addCard() {
+
+    const holder =
+      App.$('#cardHolder')
+        .value
+        .trim();
+
+    const number =
+      App.$('#cardNumber')
+        .value
+        .replace(/\s/g, '');
+
+    const expiry =
+      App.$('#cardExpiry')
+        .value
+        .trim();
+
+    const cvv =
+      App.$('#cardCVV')
+        .value
+        .trim();
 
     if (
-      !App.State.cart.length
+
+      !holder
+      ||
+      number.length < 16
+      ||
+      expiry.length < 5
+      ||
+      cvv.length < 3
+
     ) {
 
       App.Toast.show(
-        'Tu carrito está vacío 😕'
+        'Datos inválidos ❌'
       );
 
       return;
 
     }
 
-    this.render();
+    const card = {
 
-    App.UI.paymentModal
-      ?.classList.add(
-        'active'
-      );
+      id:
+        `card_${Date.now()}`,
 
-  },
+      holder,
 
-  close() {
+      number:
+        number.slice(-4),
 
-    App.UI.paymentModal
-      ?.classList.remove(
-        'active'
-      );
+      expiry
 
-  },
+    };
 
-  async confirm() {
-
-    App.Toast.show(
-      'Procesando pago...'
+    App.State.payment.cards.push(
+      card
     );
 
-    await new Promise(resolve => {
+    App.State.payment.selected =
+      card.id;
 
-      setTimeout(
-        resolve,
-        2000
-      );
+    App.saveStorage();
 
-    });
+    this.renderCards();
+
+    App.Toast.show(
+      'Tarjeta agregada 💳'
+    );
+
+    App.$('#cardHolder').value =
+      '';
+
+    App.$('#cardNumber').value =
+      '';
+
+    App.$('#cardExpiry').value =
+      '';
+
+    App.$('#cardCVV').value =
+      '';
+
+  },
+
+  confirm() {
 
     const order = {
 
@@ -1169,7 +1451,13 @@ App.Payment = {
 
     App.saveStorage();
 
-    App.Cart.clear();
+    App.Cart.clear?.();
+
+    App.State.cart = [];
+
+    App.Cart.render();
+
+    App.Cart.updateFab();
 
     this.close();
 
@@ -1177,18 +1465,12 @@ App.Payment = {
 
     App.Orders.render();
 
-    App.Pickup.start();
-
     App.Navigation.go(
       'orders'
     );
 
-    App.Push.show(
-      'Pedido confirmado 🍔'
-    );
-
     App.Toast.show(
-      'Pago aprobado ✅'
+      'Pedido confirmado ✅'
     );
 
   }
@@ -1209,190 +1491,84 @@ App.Orders = {
     if (!container)
       return;
 
-    if (
-      !App.State.orders.length
-    ) {
+    container.innerHTML = '';
 
-      container.innerHTML =
-        '';
+    App.State.orders.forEach(order => {
 
-      return;
+      const card =
+        App.createElement(
+          'article',
+          'profile-item'
+        );
 
-    }
+      card.innerHTML = `
 
-    container.innerHTML =
+        <div class="profile-item__left">
 
-      App.State.orders.map(order => `
+          <div class="profile-item__icon">
+            🧾
+          </div>
 
-        <article class="profile-item fade-up">
+          <div>
 
-          <div class="profile-item__left">
+            <strong>
+              Pedido #${order.id}
+            </strong>
 
-            <div class="profile-item__icon">
-              🧾
-            </div>
-
-            <div>
-
-              <strong>
-                Pedido #${order.id}
-              </strong>
-
-              <p>
-                ${order.createdAt}
-              </p>
-
-            </div>
+            <p>
+              ${order.createdAt}
+            </p>
 
           </div>
 
-          <strong>
+        </div>
 
-            ${App.formatPrice(
-              order.total
-            )}
+        <strong>
 
-          </strong>
+          ${App.formatPrice(
+            order.total
+          )}
 
-        </article>
+        </strong>
 
-      `).join('');
+      `;
+
+      container.appendChild(
+        card
+      );
+
+    });
 
   }
 
 };
 
 /* =========================================================
-   PICKUP ENGINE
+   HELPERS
 ========================================================= */
 
-App.Pickup = {
+App.getProductById =
+  productId => {
 
-  interval: null,
+    for (
+      const store
+      of App.Data.stores
+    ) {
 
-  start() {
+      const product =
+        store.products.find(
+          item =>
+            item.id === productId
+        );
 
-    const countdown =
-      App.$('#pickupCountdown');
-
-    const status =
-      App.$('#pickupStatus');
-
-    const progress =
-      App.$('#pickupProgressBar');
-
-    if (
-      !countdown ||
-      !status ||
-      !progress
-    ) return;
-
-    clearInterval(
-      this.interval
-    );
-
-    let total = 540;
-
-    this.interval =
-      setInterval(() => {
-
-        total--;
-
-        const minutes =
-          Math.floor(total / 60);
-
-        const seconds =
-          total % 60;
-
-        countdown.textContent =
-
-          `${String(minutes)
-            .padStart(2, '0')}:${String(seconds)
-            .padStart(2, '0')}`;
-
-        const percentage =
-
-          100 -
-          (
-            total / 540
-          ) * 100;
-
-        progress.style.width =
-          `${percentage}%`;
-
-        if (percentage > 90) {
-
-          status.textContent =
-            'Listo 🚀';
-
-        } else if (
-          percentage > 60
-        ) {
-
-          status.textContent =
-            'Empacando';
-
-        } else if (
-          percentage > 30
-        ) {
-
-          status.textContent =
-            'Preparando';
-
-        }
-
-        if (total <= 0) {
-
-          clearInterval(
-            this.interval
-          );
-
-          App.Push.show(
-            'Tu pedido está listo 🍔'
-          );
-
-        }
-
-      }, 1000);
-
-  }
-
-};
-
-/* =========================================================
-   PWA
-========================================================= */
-
-App.PWA = {
-
-  async register() {
-
-    if (
-      !('serviceWorker' in navigator)
-    ) return;
-
-    try {
-
-      await navigator
-        .serviceWorker
-        .register('./sw.js');
-
-      console.log(
-        '✅ SW Registered'
-      );
-
-    } catch (error) {
-
-      console.error(
-        'SW Error:',
-        error
-      );
+      if (product)
+        return product;
 
     }
 
-  }
+    return null;
 
-};
+  };
 
 /* =========================================================
    EVENTS
@@ -1400,7 +1576,7 @@ App.PWA = {
 
 App.Events = {
 
-  bind() {
+  init() {
 
     /* LOGIN */
 
@@ -1414,24 +1590,12 @@ App.Events = {
           App.Auth.login(
 
             App.$('#loginUser')
-              ?.value || '',
+              .value,
 
             App.$('#loginPass')
-              ?.value || ''
+              .value
 
           );
-
-        }
-      );
-
-    /* LOGOUT */
-
-    App.$('#logoutBtn')
-      ?.addEventListener(
-        'click',
-        () => {
-
-          App.Auth.logout();
 
         }
       );
@@ -1448,56 +1612,7 @@ App.Events = {
         }
       );
 
-    /* SEARCH */
-
-    App.$('#searchInput')
-      ?.addEventListener(
-        'input',
-
-        App.debounce(event => {
-
-          App.Filters.search =
-            event.target.value;
-
-          App.Filters.apply();
-
-        }, 250)
-
-      );
-
-    /* CATEGORY */
-
-    App.$$('.category-pill')
-      .forEach(button => {
-
-        button.addEventListener(
-          'click',
-          () => {
-
-            App.$$('.category-pill')
-              .forEach(item => {
-
-                item.classList.remove(
-                  'active'
-                );
-
-              });
-
-            button.classList.add(
-              'active'
-            );
-
-            App.Filters.category =
-              button.dataset.category;
-
-            App.Filters.apply();
-
-          }
-        );
-
-      });
-
-    /* NAVIGATION */
+    /* NAV */
 
     App.$$('.nav-btn')
       .forEach(button => {
@@ -1515,9 +1630,65 @@ App.Events = {
 
       });
 
-    /* DRAWER */
+    /* OPEN STORE */
 
-    App.UI.cartFab
+    document.addEventListener(
+      'click',
+      event => {
+
+        const button =
+          event.target.closest(
+            '[data-open-store]'
+          );
+
+        if (!button)
+          return;
+
+        App.Store.open(
+          button.dataset.openStore
+        );
+
+      }
+    );
+
+    /* BACK */
+
+    App.$('#backHomeBtn')
+      ?.addEventListener(
+        'click',
+        () => {
+
+          App.Navigation.go(
+            'home'
+          );
+
+        }
+      );
+
+    /* ADD CART */
+
+    document.addEventListener(
+      'click',
+      event => {
+
+        const button =
+          event.target.closest(
+            '[data-product]'
+          );
+
+        if (!button)
+          return;
+
+        App.Cart.add(
+          button.dataset.product
+        );
+
+      }
+    );
+
+    /* CART */
+
+    App.$('#cartFab')
       ?.addEventListener(
         'click',
         () => {
@@ -1536,6 +1707,41 @@ App.Events = {
 
         }
       );
+
+    /* QUANTITY */
+
+    document.addEventListener(
+      'click',
+      event => {
+
+        const increase =
+          event.target.closest(
+            '[data-increase]'
+          );
+
+        const decrease =
+          event.target.closest(
+            '[data-decrease]'
+          );
+
+        if (increase) {
+
+          App.Cart.increase(
+            increase.dataset.increase
+          );
+
+        }
+
+        if (decrease) {
+
+          App.Cart.decrease(
+            decrease.dataset.decrease
+          );
+
+        }
+
+      }
+    );
 
     /* PAYMENT */
 
@@ -1559,6 +1765,16 @@ App.Events = {
         }
       );
 
+    App.$('#saveCardBtn')
+      ?.addEventListener(
+        'click',
+        () => {
+
+          App.Payment.addCard();
+
+        }
+      );
+
     App.$('#confirmPayment')
       ?.addEventListener(
         'click',
@@ -1569,96 +1785,205 @@ App.Events = {
         }
       );
 
-    /* GLOBAL CLICK */
+    /* PAYMENT TYPE */
+
+    App.$$('.payment-option')
+      .forEach(option => {
+
+        option.addEventListener(
+          'click',
+          () => {
+
+            App.$$('.payment-option')
+              .forEach(item => {
+
+                item.classList.remove(
+                  'active'
+                );
+
+              });
+
+            option.classList.add(
+              'active'
+            );
+
+            const type =
+              option.dataset.paymentType;
+
+            App.State.paymentType =
+              type;
+
+            App.$('#cashPaymentBox')
+              .classList.toggle(
+                'hidden',
+                type !== 'cash'
+              );
+
+            App.$('#cardPaymentBox')
+              .classList.toggle(
+                'hidden',
+                type !== 'card'
+              );
+
+          }
+        );
+
+      });
+
+    /* CHANGE */
+
+    App.$('#cashAmount')
+      ?.addEventListener(
+        'input',
+        event => {
+
+          const value =
+            Number(
+              event.target.value
+            );
+
+          const total =
+            App.Cart.total();
+
+          const change =
+            value - total;
+
+          App.$('#changeAmount')
+            .textContent =
+
+            change > 0
+              ? App.formatPrice(
+                  change
+                )
+              : '$0';
+
+        }
+      );
+
+    /* LOGOUT */
+
+    App.$('#logoutBtn')
+      ?.addEventListener(
+        'click',
+        () => {
+
+          App.Auth.logout();
+
+        }
+      );
+
+    /* PASSWORD */
+
+    App.$('#togglePassword')
+      ?.addEventListener(
+        'click',
+        () => {
+
+          const input =
+            App.$('#loginPass');
+
+          input.type =
+
+            input.type === 'password'
+              ? 'text'
+              : 'password';
+
+        }
+      );
+
+  }
+
+};
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+App.Clock = {
+
+  init() {
+
+    setInterval(() => {
+
+      const time =
+        new Date()
+          .toLocaleTimeString(
+            'es-MX',
+            {
+              hour: '2-digit',
+              minute: '2-digit'
+            }
+          );
+
+      App.$$('.status-time')
+        .forEach(element => {
+
+          element.textContent =
+            time;
+
+        });
+
+    }, 1000);
+
+  }
+
+};
+
+/* =========================================================
+   RIPPLE
+========================================================= */
+
+App.Ripple = {
+
+  init() {
 
     document.addEventListener(
       'click',
       event => {
 
-        const target =
-          event.target;
-
-        /* RIPPLE */
-
-        const rippleElement =
-          target.closest(
+        const button =
+          event.target.closest(
             '[data-ripple]'
           );
 
-        if (rippleElement) {
+        if (!button)
+          return;
 
-          App.Ripple.create(
-            rippleElement,
-            event
+        const ripple =
+          document.createElement(
+            'span'
           );
 
-        }
+        const rect =
+          button.getBoundingClientRect();
 
-        /* FAVORITES */
-
-        const favorite =
-          target.closest(
-            '.restaurant-fav'
+        const size =
+          Math.max(
+            rect.width,
+            rect.height
           );
 
-        if (favorite) {
+        ripple.className =
+          'ripple';
 
-          const card =
-            favorite.closest(
-              '.restaurant-card'
-            );
+        ripple.style.width =
+          ripple.style.height =
+          `${size}px`;
 
-          App.Favorites.toggle(
-            card
-          );
+        ripple.style.left =
+          `${event.clientX - rect.left - size / 2}px`;
 
-        }
+        ripple.style.top =
+          `${event.clientY - rect.top - size / 2}px`;
 
-        /* ADD CART */
+        button.appendChild(
+          ripple
+        );
 
-        const add =
-          target.closest(
-            '[data-action="add-cart"]'
-          );
-
-        if (add) {
-
-          const product =
-            add.closest(
-              '.product-card'
-            );
-
-          App.Cart.add({
-
-            id:
-              product.dataset.id,
-
-            name:
-              product.dataset.name,
-
-            price:
-              Number(
-                product.dataset.price
-              )
-
-          });
-
-        }
-
-        /* REMOVE */
-
-        const remove =
-          target.closest(
-            '[data-remove]'
-          );
-
-        if (remove) {
-
-          App.Cart.decrease(
-            remove.dataset.remove
-          );
-
-        }
+        ripple.addEventListener(
+          'animationend',
+          () => ripple.remove()
+        );
 
       }
     );
@@ -1679,33 +2004,35 @@ App.init = () => {
 
   App.Auth.init();
 
-  App.Splash.init();
-
-  App.Clock.init();
+  App.Events.init();
 
   App.Cart.render();
 
   App.Cart.updateFab();
 
-  App.Favorites.render();
-
   App.Orders.render();
 
-  App.Events.bind();
+  App.Clock.init();
 
-  App.PWA.register();
+  App.Ripple.init();
 
-  console.log(
-    '🚀 FastService Initialized'
-  );
+  setTimeout(() => {
+
+    App.$('#splashScreen')
+      ?.remove();
+
+  }, 1800);
 
 };
-
-/* =========================================================
-   DOM READY
-========================================================= */
 
 document.addEventListener(
   'DOMContentLoaded',
   App.init
+);
+
+document.body.classList.add(
+  'modal-open'
+);
+document.body.classList.remove(
+  'modal-open'
 );

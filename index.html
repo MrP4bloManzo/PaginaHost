@@ -3,20 +3,11 @@
 
 <head>
 
-  <!-- =========================================================
-       META
-  ========================================================== -->
-
   <meta charset="UTF-8" />
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-
-  <meta
-    http-equiv="X-UA-Compatible"
-    content="IE=edge"
   />
 
   <meta
@@ -26,34 +17,21 @@
 
   <meta
     name="description"
-    content="FastService Campus - Pickup premium universitario."
+    content="FastService Campus - Pickup universitario premium."
   />
 
   <title>
     FastService Campus
   </title>
 
-  <!-- =========================================================
-       PWA
-  ========================================================== -->
+  <!-- PWA -->
 
   <link
     rel="manifest"
     href="./manifest.json"
   />
 
-  <!-- =========================================================
-       ICON
-  ========================================================== -->
-
-  <link
-    rel="icon"
-    href="./assets/icons/icon-192.png"
-  />
-
-  <!-- =========================================================
-       FONTS
-  ========================================================== -->
+  <!-- FONTS -->
 
   <link
     rel="preconnect"
@@ -71,9 +49,7 @@
     rel="stylesheet"
   />
 
-  <!-- =========================================================
-       CSS
-  ========================================================== -->
+  <!-- CSS -->
 
   <link
     rel="stylesheet"
@@ -84,15 +60,15 @@
 
 <body>
 
-  <!-- =========================================================
-       APP CONTAINER
-  ========================================================== -->
+  <!-- ======================================================
+       APP SHELL
+  ======================================================= -->
 
   <div class="app-shell">
 
-    <!-- =====================================================
-         SPLASH SCREEN
-    ====================================================== -->
+    <!-- ======================================================
+         SPLASH
+    ======================================================= -->
 
     <section
       class="splash-screen"
@@ -100,7 +76,7 @@
     >
 
       <div class="splash-screen__logo">
-        🍔
+        🚀
       </div>
 
       <h1>
@@ -117,18 +93,18 @@
 
     </section>
 
-    <!-- =====================================================
-         GLOBAL BACKDROP
-    ====================================================== -->
+    <!-- ======================================================
+         BACKDROP
+    ======================================================= -->
 
     <div
       class="global-backdrop"
       id="globalBackdrop"
     ></div>
 
-    <!-- =====================================================
+    <!-- ======================================================
          TOAST
-    ====================================================== -->
+    ======================================================= -->
 
     <div
       class="toast"
@@ -139,9 +115,9 @@
       Acción realizada 🚀
     </div>
 
-    <!-- =====================================================
-         PUSH NOTIFICATION
-    ====================================================== -->
+    <!-- ======================================================
+         PUSH
+    ======================================================= -->
 
     <div
       class="push-notification"
@@ -166,9 +142,9 @@
 
     </div>
 
-    <!-- =====================================================
+    <!-- ======================================================
          AUTH SCREEN
-    ====================================================== -->
+    ======================================================= -->
 
     <section
       class="auth-screen"
@@ -178,8 +154,6 @@
       <div class="auth-screen__gradient"></div>
 
       <div class="auth-card">
-
-        <!-- BRAND -->
 
         <div class="auth-brand">
 
@@ -194,21 +168,19 @@
             </h1>
 
             <p>
-              Pickup inteligente universitario
+              Pickup universitario premium
             </p>
 
           </div>
 
         </div>
 
-        <!-- LOGIN FORM -->
+        <!-- LOGIN -->
 
         <form
           class="auth-form"
           id="loginForm"
         >
-
-          <!-- USER -->
 
           <div class="input-group">
 
@@ -219,14 +191,12 @@
             <input
               type="text"
               id="loginUser"
-              placeholder="Ingresa tu usuario"
+              placeholder="Tu usuario"
               autocomplete="username"
               required
             />
 
           </div>
-
-          <!-- PASSWORD -->
 
           <div class="input-group">
 
@@ -248,7 +218,6 @@
                 type="button"
                 class="password-toggle"
                 id="togglePassword"
-                aria-label="Mostrar contraseña"
                 data-ripple
               >
                 👁️
@@ -257,34 +226,6 @@
             </div>
 
           </div>
-
-          <!-- OPTIONS -->
-
-          <div class="auth-options">
-
-            <label class="remember-me">
-
-              <input
-                type="checkbox"
-                id="rememberUser"
-              />
-
-              <span>
-                Recordarme
-              </span>
-
-            </label>
-
-            <button
-              type="button"
-              class="auth-link"
-            >
-              ¿Olvidaste tu contraseña?
-            </button>
-
-          </div>
-
-          <!-- SUBMIT -->
 
           <button
             type="submit"
@@ -302,18 +243,15 @@
 
     </section>
 
-    <!-- =====================================================
+    <!-- ======================================================
          APP WRAPPER
-    ====================================================== -->
+    ======================================================= -->
 
-    <div
-      class="app-wrapper"
-      id="appWrapper"
-    >
+    <div class="app-wrapper">
 
-      <!-- =================================================
+      <!-- ====================================================
            STATUS BAR
-      ================================================== -->
+      ===================================================== -->
 
       <header class="status-bar">
 
@@ -331,15 +269,15 @@
 
       </header>
 
-      <!-- =================================================
-           MAIN CONTENT
-      ================================================== -->
+      <!-- ====================================================
+           MAIN
+      ===================================================== -->
 
       <main class="main-content">
 
-        <!-- =================================================
+        <!-- ==================================================
              HOME VIEW
-        ================================================== -->
+        =================================================== -->
 
         <section
           class="view active"
@@ -352,8 +290,6 @@
           <section class="hero-section">
 
             <div class="hero-top">
-
-              <!-- LOCATION -->
 
               <div class="location-box">
 
@@ -375,8 +311,6 @@
 
               </div>
 
-              <!-- THEME -->
-
               <button
                 class="theme-btn"
                 id="themeToggle"
@@ -388,7 +322,7 @@
 
             </div>
 
-            <!-- HERO TEXT -->
+            <!-- TEXT -->
 
             <div class="hero-text">
 
@@ -413,7 +347,7 @@
               <input
                 type="text"
                 id="searchInput"
-                placeholder="Buscar comida..."
+                placeholder="Buscar tiendas o productos..."
                 autocomplete="off"
               />
 
@@ -421,9 +355,9 @@
 
           </section>
 
-          <!-- =================================================
-               PREMIUM BANNER
-          ================================================== -->
+          <!-- ==================================================
+               BANNER
+          =================================================== -->
 
           <section class="premium-banner">
 
@@ -440,7 +374,7 @@
               </h2>
 
               <p>
-                Ordena desde tu salón y pasa directo.
+                Pide desde tu salón y pasa directo.
               </p>
 
               <button
@@ -458,298 +392,391 @@
 
           </section>
 
-          <!-- =================================================
-               CATEGORIES
-          ================================================== -->
+          <!-- ==================================================
+               STORES
+          =================================================== -->
 
-          <section class="categories-section">
+          <section class="stores-section">
 
             <div class="section-header">
 
               <h2>
-                Categorías
+                Tiendas disponibles
               </h2>
 
             </div>
 
-            <div class="categories-scroll">
+            <!-- ==================================================
+                 STORE GRID
+            =================================================== -->
 
-              <button
-                class="category-pill active"
-                data-category="all"
-              >
-                🍽️ Todo
-              </button>
+            <div
+              class="restaurants-grid"
+              id="storesContainer"
+            >
 
-              <button
-                class="category-pill"
-                data-category="burger"
-              >
-                🍔 Burgers
-              </button>
+              <!-- ==============================================
+                   CCC
+              =============================================== -->
 
-              <button
-                class="category-pill"
-                data-category="pizza"
+              <article
+                class="restaurant-card store-card"
+                data-store="ccc"
               >
-                🍕 Pizza
-              </button>
 
-              <button
-                class="category-pill"
-                data-category="healthy"
-              >
-                🥗 Healthy
-              </button>
+                <div class="restaurant-card__image">
 
-              <button
-                class="category-pill"
-                data-category="coffee"
+                  <img
+                    loading="lazy"
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop"
+                    alt="CCC Cocina con Conciencia"
+                  />
+
+                  <span class="restaurant-badge">
+                    🥗 Healthy
+                  </span>
+
+                </div>
+
+                <div class="restaurant-card__body">
+
+                  <div class="restaurant-card__top">
+
+                    <div>
+
+                      <h2>
+                        CCC Cocina con Conciencia
+                      </h2>
+
+                      <p>
+                        Pickup • 10 min
+                      </p>
+
+                    </div>
+
+                    <button
+                      class="restaurant-fav"
+                      data-ripple
+                    >
+                      ♡
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="primary-btn open-store-btn"
+                    data-open-store="ccc"
+                    data-ripple
+                  >
+
+                    Ver productos 🚀
+
+                  </button>
+
+                </div>
+
+              </article>
+
+              <!-- ==============================================
+                   TIENDITA
+              =============================================== -->
+
+              <article
+                class="restaurant-card store-card"
+                data-store="tiendita"
               >
-                ☕ Café
-              </button>
+
+                <div class="restaurant-card__image">
+
+                  <img
+                    loading="lazy"
+                    src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=1200&auto=format&fit=crop"
+                    alt="Tiendita"
+                  />
+
+                  <span class="restaurant-badge">
+                    🛒 Snacks
+                  </span>
+
+                </div>
+
+                <div class="restaurant-card__body">
+
+                  <div class="restaurant-card__top">
+
+                    <div>
+
+                      <h2>
+                        Tiendita
+                      </h2>
+
+                      <p>
+                        Pickup • 5 min
+                      </p>
+
+                    </div>
+
+                    <button
+                      class="restaurant-fav"
+                      data-ripple
+                    >
+                      ♡
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="primary-btn open-store-btn"
+                    data-open-store="tiendita"
+                    data-ripple
+                  >
+
+                    Ver productos 🚀
+
+                  </button>
+
+                </div>
+
+              </article>
+
+              <!-- ==============================================
+                   PAPELERÍA
+              =============================================== -->
+
+              <article
+                class="restaurant-card store-card"
+                data-store="papeleria"
+              >
+
+                <div class="restaurant-card__image">
+
+                  <img
+                    loading="lazy"
+                    src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop"
+                    alt="Papelería"
+                  />
+
+                  <span class="restaurant-badge">
+                    ✏️ Escolar
+                  </span>
+
+                </div>
+
+                <div class="restaurant-card__body">
+
+                  <div class="restaurant-card__top">
+
+                    <div>
+
+                      <h2>
+                        Papelería
+                      </h2>
+
+                      <p>
+                        Pickup • 3 min
+                      </p>
+
+                    </div>
+
+                    <button
+                      class="restaurant-fav"
+                      data-ripple
+                    >
+                      ♡
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="primary-btn open-store-btn"
+                    data-open-store="papeleria"
+                    data-ripple
+                  >
+
+                    Ver productos 🚀
+
+                  </button>
+
+                </div>
+
+              </article>
+
+              <!-- ==============================================
+                   CAFETERÍA
+              =============================================== -->
+
+              <article
+                class="restaurant-card store-card"
+                data-store="cafeteria"
+              >
+
+                <div class="restaurant-card__image">
+
+                  <img
+                    loading="lazy"
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+                    alt="Cafetería"
+                  />
+
+                  <span class="restaurant-badge">
+                    ☕ Coffee
+                  </span>
+
+                </div>
+
+                <div class="restaurant-card__body">
+
+                  <div class="restaurant-card__top">
+
+                    <div>
+
+                      <h2>
+                        Cafetería
+                      </h2>
+
+                      <p>
+                        Pickup • 8 min
+                      </p>
+
+                    </div>
+
+                    <button
+                      class="restaurant-fav"
+                      data-ripple
+                    >
+                      ♡
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="primary-btn open-store-btn"
+                    data-open-store="cafeteria"
+                    data-ripple
+                  >
+
+                    Ver productos 🚀
+
+                  </button>
+
+                </div>
+
+              </article>
+
+              <!-- ==============================================
+                   CAFETERÍA SERVICIOS
+              =============================================== -->
+
+              <article
+                class="restaurant-card store-card"
+                data-store="servicios"
+              >
+
+                <div class="restaurant-card__image">
+
+                  <img
+                    loading="lazy"
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop"
+                    alt="Cafetería de Servicios"
+                  />
+
+                  <span class="restaurant-badge">
+                    🌯 Comida
+                  </span>
+
+                </div>
+
+                <div class="restaurant-card__body">
+
+                  <div class="restaurant-card__top">
+
+                    <div>
+
+                      <h2>
+                        Cafetería de Servicios
+                      </h2>
+
+                      <p>
+                        Pickup • 12 min
+                      </p>
+
+                    </div>
+
+                    <button
+                      class="restaurant-fav"
+                      data-ripple
+                    >
+                      ♡
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="primary-btn open-store-btn"
+                    data-open-store="servicios"
+                    data-ripple
+                  >
+
+                    Ver productos 🚀
+
+                  </button>
+
+                </div>
+
+              </article>
 
             </div>
-
-          </section>
-
-          <!-- =================================================
-               RESTAURANTS GRID
-          ================================================== -->
-
-          <section
-            class="restaurants-grid"
-            id="restaurantsContainer"
-          >
-
-            <!-- =================================================
-                 CARD 1
-            ================================================== -->
-
-            <article
-              class="restaurant-card"
-              data-category="burger"
-              data-id="burger-lab"
-            >
-
-              <div class="restaurant-card__image">
-
-                <img
-                  loading="lazy"
-                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
-                  alt="Burger Lab"
-                />
-
-                <span class="restaurant-badge">
-                  🔥 HOT
-                </span>
-
-              </div>
-
-              <div class="restaurant-card__body">
-
-                <div class="restaurant-card__top">
-
-                  <div>
-
-                    <h2>
-                      Burger Lab
-                    </h2>
-
-                    <p>
-                      Pickup • 10 min
-                    </p>
-
-                  </div>
-
-                  <button
-                    class="restaurant-fav"
-                    data-ripple
-                    aria-label="Agregar a favoritos"
-                  >
-                    ♡
-                  </button>
-
-                </div>
-
-                <!-- PRODUCTS -->
-
-                <div class="restaurant-products-preview">
-
-                  <!-- PRODUCT -->
-
-                  <article
-                    class="product-card"
-                    data-id="burger_smash"
-                    data-name="Smash Burger"
-                    data-price="145"
-                  >
-
-                    <div>
-
-                      <h3>
-                        Smash Burger
-                      </h3>
-
-                      <p>
-                        Carne smash premium
-                      </p>
-
-                      <strong>
-                        $145
-                      </strong>
-
-                    </div>
-
-                    <button
-                      class="add-btn"
-                      data-action="add-cart"
-                      data-ripple
-                    >
-                      +
-                    </button>
-
-                  </article>
-
-                  <!-- PRODUCT -->
-
-                  <article
-                    class="product-card"
-                    data-id="burger_bacon"
-                    data-name="Bacon Monster"
-                    data-price="189"
-                  >
-
-                    <div>
-
-                      <h3>
-                        Bacon Monster
-                      </h3>
-
-                      <p>
-                        Triple carne + bacon
-                      </p>
-
-                      <strong>
-                        $189
-                      </strong>
-
-                    </div>
-
-                    <button
-                      class="add-btn"
-                      data-action="add-cart"
-                      data-ripple
-                    >
-                      +
-                    </button>
-
-                  </article>
-
-                </div>
-
-              </div>
-
-            </article>
-
-            <!-- =================================================
-                 CARD 2
-            ================================================== -->
-
-            <article
-              class="restaurant-card"
-              data-category="pizza"
-              data-id="pizza-max"
-            >
-
-              <div class="restaurant-card__image">
-
-                <img
-                  loading="lazy"
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"
-                  alt="Pizza Max"
-                />
-
-                <span class="restaurant-badge">
-                  🍕 TOP
-                </span>
-
-              </div>
-
-              <div class="restaurant-card__body">
-
-                <div class="restaurant-card__top">
-
-                  <div>
-
-                    <h2>
-                      Pizza Max
-                    </h2>
-
-                    <p>
-                      Pickup • 12 min
-                    </p>
-
-                  </div>
-
-                  <button
-                    class="restaurant-fav"
-                    data-ripple
-                    aria-label="Agregar a favoritos"
-                  >
-                    ♡
-                  </button>
-
-                </div>
-
-                <div class="restaurant-products-preview">
-
-                  <article
-                    class="product-card"
-                    data-id="pizza_pepperoni"
-                    data-name="Pepperoni XL"
-                    data-price="245"
-                  >
-
-                    <div>
-
-                      <h3>
-                        Pepperoni XL
-                      </h3>
-
-                      <p>
-                        Extra queso premium
-                      </p>
-
-                      <strong>
-                        $245
-                      </strong>
-
-                    </div>
-
-                    <button
-                      class="add-btn"
-                      data-action="add-cart"
-                      data-ripple
-                    >
-                      +
-                    </button>
-
-                  </article>
-
-                </div>
-
-              </div>
-
-            </article>
 
           </section>
 
         </section>
 
-        <!-- =================================================
+        <!-- ==================================================
+             STORE VIEW
+        =================================================== -->
+
+        <section
+          class="view"
+          id="view-store"
+          data-view="store"
+        >
+
+          <section class="store-view-header">
+
+            <button
+              class="back-btn"
+              id="backHomeBtn"
+              data-ripple
+            >
+              ←
+            </button>
+
+            <div>
+
+              <small>
+                Tienda
+              </small>
+
+              <h1 id="storeTitle">
+                Store
+              </h1>
+
+            </div>
+
+          </section>
+
+          <!-- PRODUCTS -->
+
+          <section
+            class="store-products"
+            id="storeProducts"
+          ></section>
+
+        </section>
+
+        <!-- ==================================================
              ORDERS VIEW
-        ================================================== -->
+        =================================================== -->
 
         <section
           class="view"
@@ -766,11 +793,11 @@
             </small>
 
             <h1>
-              Tu comida estará lista pronto 🍔
+              Tu pedido estará listo pronto 🚀
             </h1>
 
             <p>
-              Evita filas y recoge directamente.
+              Pasa directo y evita filas.
             </p>
 
           </section>
@@ -804,8 +831,6 @@
 
             </div>
 
-            <!-- TIMER -->
-
             <div class="pickup-time-box">
 
               <small>
@@ -818,28 +843,12 @@
 
             </div>
 
-            <!-- PROGRESS -->
-
             <div class="pickup-progress">
 
               <div
                 class="pickup-progress__bar"
                 id="pickupProgressBar"
               ></div>
-
-            </div>
-
-            <!-- QR -->
-
-            <div class="pickup-qr">
-
-              <div class="pickup-qr__fake">
-                QR
-              </div>
-
-              <p>
-                Muestra este código al recoger.
-              </p>
 
             </div>
 
@@ -854,17 +863,15 @@
 
         </section>
 
-        <!-- =================================================
+        <!-- ==================================================
              PROFILE VIEW
-        ================================================== -->
+        =================================================== -->
 
         <section
           class="view"
           id="view-profile"
           data-view="profile"
         >
-
-          <!-- PROFILE HERO -->
 
           <section class="profile-hero">
 
@@ -882,123 +889,19 @@
 
           </section>
 
-          <!-- PROFILE STATS -->
+          <!-- PROFILE ACTIONS -->
 
-          <section class="profile-stats">
-
-            <article class="profile-stat">
-
-              <strong>
-                58
-              </strong>
-
-              <span>
-                Pedidos
-              </span>
-
-            </article>
-
-            <article class="profile-stat">
-
-              <strong>
-                12
-              </strong>
-
-              <span>
-                Favoritos
-              </span>
-
-            </article>
-
-            <article class="profile-stat">
-
-              <strong>
-                4.9
-              </strong>
-
-              <span>
-                Rating
-              </span>
-
-            </article>
-
-          </section>
-
-          <!-- MENU -->
-
-          <section class="profile-menu">
+          <section class="profile-list">
 
             <button
               class="profile-item"
-              data-ripple
-            >
-
-              <div class="profile-item__left">
-
-                <div class="profile-item__icon">
-                  💳
-                </div>
-
-                <div>
-
-                  <strong>
-                    Métodos de pago
-                  </strong>
-
-                  <p>
-                    Tarjetas guardadas
-                  </p>
-
-                </div>
-
-              </div>
-
-              <span class="profile-arrow">
-                ›
-              </span>
-
-            </button>
-
-            <button
-              class="profile-item"
-              data-ripple
-            >
-
-              <div class="profile-item__left">
-
-                <div class="profile-item__icon">
-                  ⚙️
-                </div>
-
-                <div>
-
-                  <strong>
-                    Configuración
-                  </strong>
-
-                  <p>
-                    Preferencias de la app
-                  </p>
-
-                </div>
-
-              </div>
-
-              <span class="profile-arrow">
-                ›
-              </span>
-
-            </button>
-
-            <button
-              class="profile-item profile-item--danger"
               id="logoutBtn"
               data-ripple
             >
 
               <div class="profile-item__left">
 
-                <div class="profile-item__icon profile-item__icon--danger">
+                <div class="profile-item__icon">
                   🚪
                 </div>
 
@@ -1016,10 +919,6 @@
 
               </div>
 
-              <span class="profile-arrow">
-                ›
-              </span>
-
             </button>
 
           </section>
@@ -1028,28 +927,9 @@
 
       </main>
 
-      <!-- =================================================
-           CART FAB
-      ================================================== -->
-
-      <button
-        class="cart-fab"
-        id="cartFab"
-        data-ripple
-        aria-label="Abrir carrito"
-      >
-
-        🛒
-
-        <span id="fabCount">
-          0
-        </span>
-
-      </button>
-
-      <!-- =================================================
+      <!-- ====================================================
            BOTTOM NAV
-      ================================================== -->
+      ===================================================== -->
 
       <nav class="bottom-nav">
 
@@ -1076,7 +956,7 @@
         >
 
           <span>
-            📦
+            🧾
           </span>
 
           <small>
@@ -1103,89 +983,42 @@
 
       </nav>
 
-    </div>
+      <!-- ====================================================
+           CART FAB
+      ===================================================== -->
 
-    <!-- =====================================================
-         CART DRAWER
-    ====================================================== -->
-
-    <aside
-      class="cart-drawer"
-      id="cartDrawer"
-    >
-
-      <div class="drawer-header">
-
-        <h2>
-          Tu carrito
-        </h2>
-
-        <button
-          class="drawer-close"
-          id="closeDrawer"
-          data-ripple
-        >
-          ✕
-        </button>
-
-      </div>
-
-      <div
-        class="drawer-cart-items"
-        id="drawerCartItems"
+      <button
+        class="cart-fab"
+        id="cartFab"
+        data-ripple
       >
 
-        <!-- JS -->
+        🛒
 
-      </div>
+        <span id="fabCount">
+          0
+        </span>
 
-      <div class="drawer-footer">
+      </button>
 
-        <div class="drawer-total">
+      <!-- ====================================================
+           CART DRAWER
+      ===================================================== -->
 
-          <small>
-            Total
-          </small>
+      <aside
+        class="cart-drawer"
+        id="cartDrawer"
+      >
 
-          <strong id="drawerTotal">
-            $0
-          </strong>
-
-        </div>
-
-        <button
-          class="checkout-btn"
-          id="checkoutBtn"
-          data-ripple
-        >
-
-          Continuar pago 🚀
-
-        </button>
-
-      </div>
-
-    </aside>
-
-    <!-- =====================================================
-         PAYMENT MODAL
-    ====================================================== -->
-
-    <section
-      class="payment-modal"
-      id="paymentModal"
-    >
-
-      <div class="payment-modal__card">
-
-        <div class="payment-modal__header">
+        <div class="drawer-header">
 
           <h2>
-            Método de pago
+            Tu carrito
           </h2>
 
           <button
-            id="closePaymentModal"
+            class="drawer-close"
+            id="closeDrawer"
             data-ripple
           >
             ✕
@@ -1193,35 +1026,258 @@
 
         </div>
 
+        <!-- CART ITEMS -->
+
         <div
-          class="payment-methods"
-          id="paymentMethods"
+          class="drawer-cart-items"
+          id="drawerCartItems"
         ></div>
 
-        <button
-          class="checkout-btn"
-          id="confirmPayment"
-          data-ripple
-        >
+        <!-- FOOTER -->
 
-          Confirmar pago ✅
+        <div class="drawer-footer">
 
-        </button>
+          <div class="drawer-total-box">
 
-      </div>
+            <small>
+              Total
+            </small>
 
-    </section>
+            <strong id="drawerTotal">
+              $0
+            </strong>
+
+          </div>
+
+          <button
+            class="checkout-btn"
+            id="checkoutBtn"
+            data-ripple
+          >
+
+            Ir a pagar 💳
+
+          </button>
+
+        </div>
+
+      </aside>
+
+      <!-- ====================================================
+           PAYMENT MODAL
+      ===================================================== -->
+
+      <section
+        class="payment-modal"
+        id="paymentModal"
+      >
+
+        <div class="payment-modal__card">
+
+          <!-- HEADER -->
+
+          <div class="payment-modal__header">
+
+            <h2>
+              Método de pago
+            </h2>
+
+            <button
+              id="closePaymentModal"
+              data-ripple
+            >
+              ✕
+            </button>
+
+          </div>
+
+          <!-- PAYMENT OPTIONS -->
+
+          <div class="payment-options">
+
+            <!-- CASH -->
+
+            <button
+              class="payment-option active"
+              data-payment-type="cash"
+            >
+
+              <div>
+
+                <strong>
+                  💵 Efectivo
+                </strong>
+
+                <p>
+                  Pago al recoger
+                </p>
+
+              </div>
+
+              <span>
+                ✓
+              </span>
+
+            </button>
+
+            <!-- CARD -->
+
+            <button
+              class="payment-option"
+              data-payment-type="card"
+            >
+
+              <div>
+
+                <strong>
+                  💳 Tarjeta
+                </strong>
+
+                <p>
+                  Tarjetas guardadas
+                </p>
+
+              </div>
+
+              <span>
+                ○
+              </span>
+
+            </button>
+
+          </div>
+
+          <!-- CASH BOX -->
+
+          <div
+            class="cash-payment-box"
+            id="cashPaymentBox"
+          >
+
+            <label for="cashAmount">
+              ¿Con cuánto pagarás?
+            </label>
+
+            <input
+              type="number"
+              id="cashAmount"
+              placeholder="$500"
+            />
+
+            <div class="change-box">
+
+              <small>
+                Cambio estimado
+              </small>
+
+              <strong id="changeAmount">
+                $0
+              </strong>
+
+            </div>
+
+          </div>
+
+          <!-- CARD SECTION -->
+
+          <div
+            class="card-payment-box hidden"
+            id="cardPaymentBox"
+          >
+
+            <!-- SAVED CARDS -->
+
+            <div
+              class="payment-methods"
+              id="paymentMethods"
+            ></div>
+
+            <!-- ADD CARD -->
+
+            <div class="add-card-form">
+
+              <h3>
+                Agregar tarjeta
+              </h3>
+
+              <div class="input-group">
+
+                <input
+                  type="text"
+                  id="cardHolder"
+                  placeholder="Nombre del titular"
+                />
+
+              </div>
+
+              <div class="input-group">
+
+                <input
+                  type="text"
+                  id="cardNumber"
+                  placeholder="4242 4242 4242 4242"
+                  maxlength="19"
+                />
+
+              </div>
+
+              <div class="card-row">
+
+                <input
+                  type="text"
+                  id="cardExpiry"
+                  placeholder="12/29"
+                  maxlength="5"
+                />
+
+                <input
+                  type="password"
+                  id="cardCVV"
+                  placeholder="CVV"
+                  maxlength="4"
+                />
+
+              </div>
+
+              <button
+                class="primary-btn"
+                id="saveCardBtn"
+                data-ripple
+              >
+
+                Guardar tarjeta ➕
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- PAY -->
+
+          <button
+            class="checkout-btn"
+            id="confirmPayment"
+            data-ripple
+          >
+
+            Confirmar pago ✅
+
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
 
   </div>
 
-  <!-- =========================================================
-       JS
-  ========================================================== -->
+  <!-- ======================================================
+       SCRIPT
+  ======================================================= -->
 
-  <script
-    src="./script.js"
-    defer
-  ></script>
+  <script src="./script.js"></script>
 
 </body>
 </html>
