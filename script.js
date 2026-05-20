@@ -709,6 +709,8 @@ App.Navigation = {
 
   go(view) {
 
+    
+
     App.State.currentView =
       view;
 
@@ -741,7 +743,10 @@ App.Navigation = {
       'active'
     );
 
+    App.Cart.updateFab();
   }
+
+  
 
 };
 
@@ -1186,19 +1191,42 @@ App.Cart = {
 
   updateFab() {
 
-    const total =
-      this.totalItems();
+  const total =
+    this.totalItems();
 
-    App.UI.cartFab
-      .classList.toggle(
-        'visible',
-        total > 0
-      );
+  const isLogged =
+    App.State.logged;
 
-    App.UI.fabCount.textContent =
-      total;
+  const currentView =
+    App.State.currentView;
 
-  }
+  const authVisible =
+    App.UI.auth.style.display !== 'none';
+
+  const shouldShow =
+
+    isLogged &&
+
+    !authVisible &&
+
+    total > 0 &&
+
+    (
+      currentView === 'home'
+      ||
+      currentView === 'store'
+    );
+
+  App.UI.cartFab
+    .classList.toggle(
+      'visible',
+      shouldShow
+    );
+
+  App.UI.fabCount.textContent =
+    total;
+
+}
 
 };
 

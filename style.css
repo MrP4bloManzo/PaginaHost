@@ -815,8 +815,8 @@ a {
 
   position: absolute;
 
-  top: 50%;
-  right: 10px;
+  top: -30px;
+  right: -255px;
 
   transform:
     translateY(-50%);
