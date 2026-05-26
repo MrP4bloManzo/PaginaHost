@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PetStation Dashboard</title>
+
+    <link rel="stylesheet"
+          href="estilo.css">
+
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+    <script defer src="script.js"></script>
+
+</head>
+
+<body>
+
+<script>
+
+    if(!sessionStorage.getItem("psLoggedIn")) {
+
+        window.location.href = "index.html";
+    }
+
+</script>
+
+<header>
+
+    <h1>🐶 PETSTATION 🐱</h1>
+
+    <div class="header-user">
+
+        <span id="headerUser"></span>
+
+        <button onclick="cerrarSesion()">
+            Salir 🚪
+        </button>
+
+    </div>
+
+</header>
+
+<main>
+
+    <section class="menu">
+
+        <!-- COMIDA -->
+
+        <div class="card">
+
+            <h2>🍖 Comida 🍖</h2>
+
+            <div class="progress-circle"
+                 id="circleComida">
+
+                <span>0%</span>
+
+            </div>
+
+            <button id="btnRellenarComida">
+                Dispensar 🍖
+            </button>
+
+        </div>
+
+        <!-- AGUA -->
+
+        <div class="card">
+
+            <h2>💧 Agua 💧</h2>
+
+            <div class="progress-circle"
+                 id="circleAgua">
+
+                <span>0%</span>
+
+            </div>
+
+            <button id="btnRellenarAgua">
+                Rellenar 💧
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ALERTA -->
+
+    <section class="alerta">
+
+        <h2>⚠️ Estado ⚠️</h2>
+
+        <p id="textoAlerta">
+            Esperando datos...
+        </p>
+
+    </section>
+
+    <!-- INFO -->
+
+    <section class="info">
+
+        <div class="info-box">
+
+            <h3>📶 WiFi</h3>
+
+            <p id="estadoWifi">
+                Desconectado
+            </p>
+
+        </div>
+
+        <div class="info-box">
+
+            <h3>📟 Sensores</h3>
+
+            <p id="estadoSensores">
+                ---
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- HISTORIAL -->
+
+    <section class="historial">
+
+        <h2>📚 Historial</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Acción</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historialBody">
+
+            </tbody>
+
+        </table>
+
+        <button id="btnBorrarHistorial">
+            Borrar Historial
+        </button>
+
+    </section>
+
+</main>
+
+<script>
+
+const user =
+    sessionStorage.getItem("psUser");
+
+document.getElementById("headerUser")
+.textContent =
+    "👤 " + user;
+
+function cerrarSesion() {
+
+    sessionStorage.clear();
+
+    window.location.href =
+        "index.html";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+/* =========================================================
+   GOOGLE FONTS
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#3b1d14,#120f0f 60%);
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#1a1a1a;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff9800;
+    border-radius:20px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    width:100%;
+
+    padding:25px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+}
+
+header h1{
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+    color:#fff;
+
+    letter-spacing:2px;
+
+    text-shadow:0 0 15px rgba(255,152,0,0.5);
+}
+
+.header-user{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    font-size:0.95rem;
+
+    transition:0.3s;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #ff9800,
+        #ff6f00
+    );
+
+    box-shadow:
+    0 5px 20px rgba(255,152,0,0.35);
+}
+
+button:hover{
+
+    transform:translateY(-3px) scale(1.03);
+
+    box-shadow:
+    0 10px 25px rgba(255,152,0,0.55);
+}
+
+button:active{
+
+    transform:scale(0.96);
+}
+
+.btn-logout{
+
+    background:linear-gradient(
+        135deg,
+        #ff3d3d,
+        #b00020
+    );
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:100%;
+
+    padding:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.menu{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(16px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+    padding:30px;
+
+    transition:0.4s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:
+    rgba(255,152,0,0.12);
+
+    border-radius:50%;
+
+    top:-60px;
+    right:-60px;
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.45);
+}
+
+.card h2{
+
+    margin-bottom:20px;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    z-index:2;
+
+    position:relative;
+}
+
+/* =========================================================
+   CIRCULOS PROGRESS
+========================================================= */
+
+.progress-circle{
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    margin:25px auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    transition:1s;
+
+    background:
+    conic-gradient(
+        #ff9800 0deg,
+        #2a2a2a 0deg
+    );
+
+    box-shadow:
+    0 0 30px rgba(255,152,0,0.25);
+}
+
+.progress-circle::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:125px;
+    height:125px;
+
+    border-radius:50%;
+
+    background:#161616;
+
+    box-shadow:
+    inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.progress-circle span{
+
+    position:relative;
+
+    z-index:10;
+
+    font-size:1.9rem;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+/* =========================================================
+   ALERTA
+========================================================= */
+
+.alerta{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,152,0,0.2);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 8px 30px rgba(0,0,0,0.3);
+}
+
+.alerta h2{
+
+    margin-bottom:15px;
+
+    color:#ffb74d;
+}
+
+#textoAlerta{
+
+    font-size:1.1rem;
+
+    font-weight:600;
+}
+
+/* =========================================================
+   INFO BOXES
+========================================================= */
+
+.info{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.info-box{
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(14px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    transition:0.3s;
+}
+
+.info-box:hover{
+
+    transform:translateY(-5px);
+}
+
+.info-box h3{
+
+    margin-bottom:15px;
+
+    color:#ffb74d;
+}
+
+/* =========================================================
+   HISTORIAL
+========================================================= */
+
+.historial{
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    overflow:auto;
+}
+
+.historial h2{
+
+    margin-bottom:20px;
+
+    color:#ffb74d;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:
+    rgba(255,152,0,0.18);
+
+    color:#ffcc80;
+
+    padding:15px;
+
+    font-size:0.95rem;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.08);
+}
+
+tr:hover{
+
+    background:
+    rgba(255,255,255,0.03);
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-body{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+}
+
+.login-container{
+
+    width:380px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(18px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.45);
+}
+
+.login-container h1{
+
+    margin-bottom:30px;
+
+    font-size:2.2rem;
+}
+
+.login-container input{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    color:white;
+
+    outline:none;
+
+    font-size:1rem;
+}
+
+.login-container input::placeholder{
+
+    color:#cccccc;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        text-align:center;
+    }
+
+    main{
+
+        padding:20px;
+    }
+
+    .progress-circle{
+
+        width:145px;
+        height:145px;
+    }
+
+    .progress-circle::before{
+
+        width:105px;
+        height:105px;
+    }
+
+    .progress-circle span{
+
+        font-size:1.5rem;
+    }
+}
